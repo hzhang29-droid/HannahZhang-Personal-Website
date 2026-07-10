@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>张梓涵 Zihan Zhang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400..900;1,400..900&family=Noto+Serif+SC:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=Space+Mono:wght@400;700&family=Parisienne&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f6f1e4;
+    --paper-line:rgba(28,23,15,0.08);
+    --ink:#1c1712;
+    --ink-soft:#6e6350;
+    --accent:#b3503a;
+    --accent-2:#4c5c40;
+    --tape:rgba(179,80,58,0.28);
+    --tape-2:rgba(76,92,64,0.22);
+    --card:#fffdf7;
+    --night:#171310;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0; color:var(--ink);
+    background-color:var(--paper);
+    background-image:
+      linear-gradient(var(--paper-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--paper-line) 1px, transparent 1px);
+    background-size:26px 26px;
+    font-family:'Inter','Noto Sans SC',sans-serif; font-weight:300;
+    line-height:1.7; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  ::selection{ background:var(--accent); color:var(--paper); }
+  h1,h2,h3,h4{ font-family:'Bodoni Moda','Noto Serif SC',serif; font-weight:600; margin:0; letter-spacing:-0.01em; }
+  a{ color:inherit; text-decoration:none; }
+  img{ max-width:100%; display:block; }
+  .mono{ font-family:'Space Mono',monospace; letter-spacing:0.06em; }
+  .script{ font-family:'Parisienne', cursive; }
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 32px; position:relative; }
+
+  /* ===== nav ===== */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(246,241,228,0.86); backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--paper-line);
+  }
+  nav.wrap{ display:flex; align-items:center; justify-content:space-between; padding:18px 32px; }
+  .logo{ font-family:'Parisienne', cursive; font-size:26px; color:var(--accent); }
+  .navlinks{ display:flex; gap:30px; }
+  .navlinks a{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-soft); font-family:'Space Mono',monospace; transition:color .2s; }
+  .navlinks a:hover, .navlinks a.active{ color:var(--accent); }
+  .menu-toggle{ display:none; background:none; border:none; font-size:20px; cursor:pointer; color:var(--ink); }
+
+  /* ===== hero ===== */
+  .hero{ padding:170px 0 110px; }
+  .hero-grid{ display:grid; grid-template-columns:1fr 0.95fr; gap:30px; align-items:center; }
+  @media(max-width:900px){ .hero-grid{ grid-template-columns:1fr; } }
+  .eyebrow{
+    font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--accent); margin-bottom:20px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{ content:""; width:22px; height:1px; background:var(--accent); }
+  .hero h1{ font-size:clamp(40px, 5.6vw, 72px); line-height:1.05; }
+  .hero .script-line{ font-size:clamp(28px,3.4vw,40px); color:var(--accent); display:block; margin-top:6px; }
+  .hero-cn{ font-family:'Noto Serif SC', serif; font-size:18px; color:var(--ink-soft); margin-top:14px; }
+  .hero-sub{ max-width:460px; color:var(--ink-soft); font-size:14.5px; margin-top:22px; }
+  .hero-cta{ display:flex; gap:14px; margin-top:34px; flex-wrap:wrap; }
+  .btn{
+    font-family:'Inter',sans-serif; font-size:13px; font-weight:500;
+    padding:12px 24px; cursor:pointer; transition:opacity .2s, transform .2s;
+    display:inline-block; border:1px solid var(--ink);
+  }
+  .btn:hover{ transform:translateY(-2px); }
+  .btn-primary{ background:var(--ink); color:var(--paper); }
+  .btn-ghost{ background:transparent; color:var(--ink); }
+
+  /* ---- collage (hero + about use this) ---- */
+  .collage{ position:relative; height:420px; }
+  .collage .ph{
+    position:absolute; background:#fff; padding:7px 7px 24px; box-shadow:0 16px 30px rgba(28,23,18,0.18);
+  }
+  .collage .ph img{ width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(10%) contrast(1.03); }
+  .collage .ph.p1{ width:210px; height:260px; top:0; right:10px; transform:rotate(5deg); z-index:3; }
+  .collage .ph.p2{ width:160px; height:200px; top:140px; left:0; transform:rotate(-7deg); z-index:2; }
+  .collage .ph.p3{ width:145px; height:175px; bottom:0; right:70px; transform:rotate(-3deg); z-index:1; }
+  .tape{ position:absolute; height:20px; background:var(--tape); z-index:5; }
+  .tape.t1{ width:58px; top:-8px; left:60px; transform:rotate(-5deg); }
+  .tape.t2{ width:50px; top:128px; left:-10px; transform:rotate(8deg); background:var(--tape-2); }
+  .tape.t3{ width:46px; bottom:70px; right:44px; transform:rotate(-8deg); }
+  @media(max-width:900px){ .collage{ height:320px; margin-top:10px; } .collage .ph.p1{ width:165px; height:205px; } .collage .ph.p2{ width:125px; height:155px; } .collage .ph.p3{ width:115px; height:145px; } }
+
+  /* small hand doodle */
+  .doodle{ position:absolute; pointer-events:none; opacity:0.85; }
+
+  /* ===== section shell ===== */
+  section{ padding:100px 0; position:relative; }
+  .section-head{ margin-bottom:50px; max-width:640px; }
+  .section-title{ font-size:clamp(26px, 3.6vw, 38px); }
+  .rule{ height:1px; background:var(--paper-line); border:none; }
+
+  /* ===== about — corkboard collage ===== */
+  .board{ position:relative; }
+  .board-grid{
+    display:grid; grid-template-columns:repeat(6, 1fr); grid-auto-rows:minmax(60px,auto);
+    gap:16px;
+  }
+  @media(max-width:820px){ .board-grid{ grid-template-columns:repeat(2,1fr); } }
+  .note{
+    background:var(--card); padding:22px 22px 20px; box-shadow:0 10px 22px rgba(28,23,18,0.1);
+    position:relative;
+  }
+  .note::before{ content:""; position:absolute; top:-9px; left:50%; transform:translateX(-50%) rotate(-3deg); width:34px; height:16px; background:var(--tape); }
+  .note.n1{ grid-column:1 / 4; grid-row:1; transform:rotate(-1.5deg); }
+  .note.n2{ grid-column:4 / 7; grid-row:1; transform:rotate(1deg); }
+  .note.n3{ grid-column:1 / 3; grid-row:2; transform:rotate(1.5deg); }
+  .note.n4{ grid-column:5 / 7; grid-row:2; transform:rotate(-1deg); }
+  @media(max-width:820px){ .note.n1,.note.n2,.note.n3,.note.n4{ grid-column:span 2; transform:none; } }
+  .note .p-eyebrow{ font-family:'Space Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); display:block; margin-bottom:10px; }
+  .note h3{ font-size:20px; margin-bottom:14px; }
+  .note ul{ margin:0; padding:0; list-style:none; }
+  .note li{ position:relative; padding-left:16px; margin-bottom:10px; font-size:13.3px; line-height:1.7; color:#4a4230; }
+  .note li::before{ content:"–"; position:absolute; left:0; opacity:0.5; }
+
+  .photo-note{ grid-column:3 / 5; grid-row:2; padding:8px 8px 20px; transform:rotate(-2deg); }
+  .photo-note img{ width:100%; height:150px; object-fit:cover; filter:grayscale(15%); }
+  .photo-note .cap{ font-family:'Parisienne',cursive; font-size:16px; text-align:center; color:var(--ink-soft); margin-top:6px; }
+  @media(max-width:820px){ .photo-note{ grid-column:span 2; } }
+
+  .interest-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:44px; }
+  .itag{ font-size:12.5px; padding:7px 14px; border:1px solid var(--paper-line); color:var(--ink-soft); background:var(--card); }
+
+  /* ===== night sky (skywatch) ===== */
+  .skywatch{
+    background:
+      linear-gradient(180deg, rgba(10,16,20,0.82), rgba(8,12,18,0.93)),
+      url("assets/astronomy/field-trip-sky.jpg") center/cover no-repeat;
+    color:#cdd3d1; padding:100px 0;
+  }
+  .skywatch .eyebrow{ color:#8fae9e; }
+  .skywatch .eyebrow::before{ background:#8fae9e; }
+  .skywatch h2{ color:#eef2ef; }
+  .skywatch .lede{ max-width:520px; color:#a8b2ae; font-size:14px; margin-top:14px; }
+  .sky-grid{ display:grid; grid-template-columns:repeat(4, 1fr); gap:18px; margin-top:48px; }
+  @media(max-width:900px){ .sky-grid{ grid-template-columns:repeat(2,1fr); } }
+  .sky-card{ background:rgba(20,26,26,0.55); border:1px solid rgba(205,211,209,0.14); padding:10px 10px 14px; }
+  .sky-card img{ width:100%; height:150px; object-fit:cover; filter:saturate(0.9) contrast(1.05); }
+  .sky-card .sky-cap{ font-family:'Space Mono',monospace; font-size:10px; letter-spacing:0.05em; color:#8fae9e; margin-top:10px; }
+  .sky-card .sky-title{ font-family:'Noto Serif SC',serif; font-size:14px; color:#e4e8e6; margin-top:4px; }
+
+  /* ===== projects ===== */
+  .project-grid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:26px; }
+  @media(max-width:800px){ .project-grid{ grid-template-columns:1fr; } }
+  .pcard{ background:var(--card); padding:30px; box-shadow:0 10px 22px rgba(28,23,18,0.08); position:relative; }
+  .pcard:nth-child(odd){ transform:rotate(-0.6deg); }
+  .pcard:nth-child(even){ transform:rotate(0.6deg); }
+  .pcard::before{ content:""; position:absolute; top:-8px; left:24px; width:40px; height:16px; background:var(--tape-2); transform:rotate(-3deg); }
+  .p-tag-row{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:14px; }
+  .p-lab{ font-family:'Space Mono',monospace; font-size:10px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-soft); }
+  .p-status{ font-family:'Space Mono',monospace; font-size:10px; color:var(--accent); }
+  .pcard h3{ font-size:20px; margin-bottom:10px; }
+  .pcard p{ color:var(--ink-soft); font-size:13.5px; margin:0 0 14px; }
+  .p-tags{ display:flex; flex-wrap:wrap; gap:7px; }
+  .p-tags span{ font-size:10.5px; font-family:'Space Mono',monospace; color:var(--ink-soft); border:1px solid var(--paper-line); padding:3px 9px; }
+
+  /* ===== resume (kept clean/legible) ===== */
+  .resume-block{ margin-bottom:56px; }
+  .resume-block:last-child{ margin-bottom:0; }
+  .rb-label{ font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); margin-bottom:20px; display:block; }
+  .entry{ display:grid; grid-template-columns:150px 1fr; gap:24px; padding:18px 0; border-top:1px solid var(--paper-line); }
+  .entry:last-child{ border-bottom:1px solid var(--paper-line); }
+  @media(max-width:640px){ .entry{ grid-template-columns:1fr; gap:6px; } }
+  .e-date{ font-family:'Space Mono',monospace; font-size:11.5px; color:var(--ink-soft); }
+  .e-date .ribbon{ display:inline-block; margin-left:6px; padding:1px 7px; font-size:9.5px; background:var(--accent); color:var(--paper); }
+  .e-body h4{ font-size:16.5px; margin-bottom:3px; }
+  .e-org{ font-size:12.3px; color:var(--ink-soft); margin-bottom:6px; font-family:'Space Mono',monospace; }
+  .e-body p{ font-size:13px; color:#5c5342; margin:0; max-width:600px; }
+
+  .skills-grid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:26px; }
+  @media(max-width:640px){ .skills-grid{ grid-template-columns:1fr; } }
+  .cat-label{ font-family:'Space Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent); margin-bottom:10px; display:block; }
+  .skill-pills{ display:flex; flex-wrap:wrap; gap:7px; }
+  .skill-pills span{ font-size:11.5px; padding:5px 11px; border:1px solid var(--paper-line); background:var(--card); }
+
+  .resume-cta{ text-align:center; margin-top:52px; }
+  .resume-cta .note-txt{ font-size:12px; color:var(--ink-soft); margin-top:10px; }
+
+  /* ===== notes ===== */
+  .journal-list{ display:flex; flex-direction:column; }
+  .j-row{ display:flex; justify-content:space-between; align-items:baseline; gap:16px; padding:18px 0; border-bottom:1px solid var(--paper-line); opacity:0.7; flex-wrap:wrap; }
+  .j-row .jt{ font-size:15px; font-family:'Noto Serif SC',serif; }
+  .j-row .jd{ font-family:'Space Mono',monospace; font-size:10.5px; color:var(--ink-soft); }
+  .journal-note{ margin-top:24px; font-family:'Parisienne',cursive; font-size:22px; color:var(--ink-soft); }
+
+  /* ===== contact (one dark closing moment) ===== */
+  .zone-night{ background:var(--night); color:#c9c2b2; background-image:none; }
+  .zone-night h2{ color:#f4f0e6; }
+  .contact-inner{ text-align:center; max-width:560px; margin:0 auto; }
+  .contact-inner h2{ font-size:clamp(28px,3.8vw,42px); margin-bottom:16px; }
+  .contact-inner p{ color:#a9a290; font-size:14px; margin-bottom:32px; }
+  .contact-links{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  .clink{ padding:11px 20px; border:1px solid rgba(240,235,220,0.2); font-size:13px; font-family:'Space Mono',monospace; color:#f4f0e6; transition:border-color .2s, background .2s; }
+  .clink:hover{ border-color:var(--accent); background:var(--accent); }
+
+  footer{ padding:34px 0; background:var(--night); }
+  .footer-inner{ display:flex; justify-content:space-between; color:#8a8272; font-size:11px; font-family:'Space Mono',monospace; flex-wrap:wrap; gap:10px; }
+
+  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+  @media(prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } .reveal{ transition:none; opacity:1; transform:none; } }
+
+  @media(max-width:700px){
+    .navlinks{ position:fixed; top:58px; left:0; right:0; background:var(--paper); border-bottom:1px solid var(--paper-line); flex-direction:column; padding:18px 32px; gap:14px; transform:translateY(-140%); transition:transform .3s; }
+    .navlinks.open{ transform:translateY(0); }
+    .menu-toggle{ display:block; }
+    .hero{ padding:140px 0 70px; }
+    section{ padding:74px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="logo">Zihan</div>
+    <div class="navlinks" id="navlinks">
+      <a href="#home">Home</a>
+      <a href="#about">Notebook</a>
+      <a href="#skywatch">Nightwatch</a>
+      <a href="#projects">Works</a>
+      <a href="#resume">Résumé</a>
+      <a href="#notes">Notes</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+  </nav>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">Neuroscience · Data Science · Smith College</div>
+        <h1>Zihan Zhang<span class="script-line script">studies quiet things, closely.</span></h1>
+        <div class="hero-cn">张梓涵 — 神经科学 / 计算机与数据科学</div>
+        <p class="hero-sub">INFJ，习惯安静独处、喜欢幻想。白天在实验室里辨认细胞与数据，夜晚用胶片相机和二胡记录内心世界。</p>
+        <div class="hero-cta">
+          <a href="#resume" class="btn btn-primary">View Résumé</a>
+          <a href="#about" class="btn btn-ghost">More About Me</a>
+        </div>
+      </div>
+      <div class="collage reveal">
+        <div class="tape t1"></div>
+        <div class="tape t2"></div>
+        <div class="tape t3"></div>
+        <div class="ph p1"><img src="assets/boston.jpg" alt="Boston"></div>
+        <div class="ph p2"><img src="assets/snow.jpg" alt="初雪"></div>
+        <div class="ph p3"><img src="assets/film-contact-sheet.jpg" alt="胶片小样"></div>
+        <svg class="doodle" style="top:-18px; right:-14px; width:46px;" viewBox="0 0 60 60"><path d="M30 5 L34 24 L53 28 L34 32 L30 51 L26 32 L7 28 L26 24 Z" fill="none" stroke="#b3503a" stroke-width="1.4"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule wrap">
+
+<!-- ============ ABOUT — notebook / corkboard ============ -->
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">01 · Notebook</div>
+      <h2 class="section-title">白天的我 / 夜晚的我</h2>
+    </div>
+
+    <div class="board reveal">
+      <div class="board-grid">
+        <div class="note n1">
+          <span class="p-eyebrow">Daytime</span>
+          <h3>专注、严谨、坐得住</h3>
+          <ul>
+            <li>在 Barresi Lab 用 HCR、免疫染色、共聚焦显微镜研究斑马鱼脊髓的放射状胶质细胞发育</li>
+            <li>在 Data Infrastructure Lab 做 Android 逆向工程，分析 App 的数据隐私漏洞</li>
+            <li>担任 BIO 133 助教，每周带本科生做 6–7 小时的实验课</li>
+          </ul>
+        </div>
+        <div class="note n2">
+          <span class="p-eyebrow">Nighttime</span>
+          <h3>安静、爱幻想、内心丰富</h3>
+          <ul>
+            <li>INFJ，社交电量有限，独处是我最主要的充电方式</li>
+            <li>拉二胡 —— 一根弦、两个音，却能装下很多说不出口的情绪</li>
+            <li>喜欢科幻与奇幻故事，那是我允许自己彻底做梦的地方</li>
+          </ul>
+        </div>
+        <div class="note n3">
+          <span class="p-eyebrow">Method</span>
+          <h3>把一个假设推敲到底</h3>
+          <ul>
+            <li>用 Python / R / MATLAB 处理数据</li>
+            <li>用胶片相机拍照、做拼贴，把零碎的瞬间拼成一张完整的记忆</li>
+          </ul>
+        </div>
+        <div class="photo-note">
+          <img src="assets/lab-whiteboard.jpg" alt="实验室白板留言">
+          <div class="cap">Barresi lab, 2026</div>
+        </div>
+        <div class="note n4">
+          <span class="p-eyebrow">Currently</span>
+          <h3>正在做的事</h3>
+          <ul>
+            <li>用 EEG 信号与消费者购买意图关系做研究</li>
+            <li>构建完整的数据分析流程：采集、预处理、统计、可视化、LLM 辅助文本分析</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="interest-row reveal">
+      <span class="itag">二胡</span>
+      <span class="itag">胶片摄影</span>
+      <span class="itag">独处充电</span>
+      <span class="itag">科幻 / 奇幻</span>
+      <span class="itag">湿实验</span>
+      <span class="itag">拼贴设计</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKYWATCH (night, real astrophotography) ============ -->
+<section class="skywatch" id="skywatch">
+  <div class="wrap">
+    <div class="eyebrow">◐ Nightwatch</div>
+    <h2 class="section-title">夜观</h2>
+    <p class="lede">白天用显微镜看细胞，夜晚用望远镜看星星——同一种耐心，指向两个不同的尺度。这些是我自己拍的星轨、月亮和一次次架好望远镜的深夜。</p>
+    <div class="sky-grid reveal">
+      <div class="sky-card">
+        <img src="assets/astronomy/star-trails.jpg" alt="星轨">
+        <div class="sky-cap">EXPOSURE · LONG</div>
+        <div class="sky-title">星轨</div>
+      </div>
+      <div class="sky-card">
+        <img src="assets/astronomy/moon%20under%20telescope.jpg" alt="望远镜下的月亮">
+        <div class="sky-cap">TARGET · MOON</div>
+        <div class="sky-title">望远镜下的月亮</div>
+      </div>
+      <div class="sky-card">
+        <img src="assets/astronomy/astrophotography.jpg" alt="架望远镜">
+        <div class="sky-cap">SETUP · NIGHT</div>
+        <div class="sky-title">架好，等云散开</div>
+      </div>
+      <div class="sky-card">
+        <img src="assets/astronomy/field-trip-sky.jpg" alt="野外星空">
+        <div class="sky-cap">SITE · FIELD TRIP</div>
+        <div class="sky-title">野外的天空</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">02 · Works</div>
+      <h2 class="section-title">用实验和代码提出的问题</h2>
+    </div>
+
+    <div class="sky-grid reveal" style="margin-top:0; margin-bottom:40px; grid-template-columns:repeat(4,1fr);">
+      <div class="sky-card" style="background:var(--card); border-color:var(--paper-line);">
+        <img src="assets/dark-collage.jpg" alt="Celebrating Collaborations 海报展示" style="filter:none;">
+        <div class="sky-cap" style="color:var(--accent);">POSTER · 2026</div>
+        <div class="sky-title" style="color:var(--ink);">Celebrating Collaborations</div>
+      </div>
+      <div class="sky-card" style="background:var(--card); border-color:var(--paper-line);">
+        <img src="assets/lab/70hpf%20zebrafish.jpg" alt="70hpf 斑马鱼" style="filter:none;">
+        <div class="sky-cap" style="color:var(--accent);">70 HPF</div>
+        <div class="sky-title" style="color:var(--ink);">斑马鱼胚胎</div>
+      </div>
+      <div class="sky-card" style="background:var(--card); border-color:var(--paper-line);">
+        <img src="assets/lab/immunostaining.jpg" alt="免疫染色成像" style="filter:none;">
+        <div class="sky-cap" style="color:var(--accent);">CONFOCAL</div>
+        <div class="sky-title" style="color:var(--ink);">肌纤维免疫染色</div>
+      </div>
+      <div class="sky-card" style="background:var(--card); border-color:var(--paper-line);">
+        <img src="assets/lab/immuno%20on%20sections.jpg" alt="切片荧光成像" style="filter:none;">
+        <div class="sky-cap" style="color:var(--accent);">FLUORESCENCE</div>
+        <div class="sky-title" style="color:var(--ink);">切片荧光成像</div>
+      </div>
+    </div>
+
+    <div class="project-grid">
+      <div class="pcard reveal">
+        <div class="p-tag-row"><span class="p-lab">Barresi Lab · Smith College</span><span class="p-status">2025.11 —</span></div>
+        <h3>放射状胶质细胞与 Metrn/MetrnL</h3>
+        <p>设计并执行实验，研究 metrn/metrn-like 敲低对斑马鱼脊髓放射状胶质细胞发育的影响；用 HCR、免疫染色和共聚焦显微镜量化空间基因表达模式，并在 Smith College Celebrating Collaborations 海报展中代表团队展示研究成果。</p>
+        <div class="p-tags"><span>HCR</span><span>Immunostaining</span><span>Confocal</span></div>
+      </div>
+      <div class="pcard reveal">
+        <div class="p-tag-row"><span class="p-lab">SURF · Smith College</span><span class="p-status">2026.05 — 06</span></div>
+        <h3>Metrn/MetrnL 缺失对肌肉发育的影响</h3>
+        <p>Summer Undergraduate Research Fellowship：研究 Metrn/MetrnL 缺失斑马鱼的肌肉发育，进行全胚胎与冷冻切片免疫染色标记 MTJ、NMJ，用 Fiji 与 R 量化肌纤维方向。</p>
+        <div class="p-tags"><span>Whole-mount</span><span>Fiji</span><span>R</span></div>
+      </div>
+      <div class="pcard reveal">
+        <div class="p-tag-row"><span class="p-lab">Data Infrastructure Lab</span><span class="p-status">2026.01 —</span></div>
+        <h3>Android 逆向工程与数据隐私</h3>
+        <p>通过终端开发工具对 App 内嵌逻辑进行逆向分析，识别数据隐私漏洞与技术不一致之处；正与团队合作撰写学术论文（撰写中）。</p>
+        <div class="p-tags"><span>Reverse Eng.</span><span>Privacy</span><span>Shell</span></div>
+      </div>
+      <div class="pcard reveal">
+        <div class="p-tag-row"><span class="p-lab">Sungkyunkwan University</span><span class="p-status">2026.07</span></div>
+        <h3>EEG 信号与消费购买意图</h3>
+        <p>基于假设驱动的研究设计，探究 EEG 信号与消费者购买意图之间的关系；用 Python 完成数据采集、预处理、统计分析与可视化的完整流程，结合 LLM 辅助文本分析，撰写并展示研究论文。</p>
+        <div class="p-tags"><span>EEG</span><span>Python</span><span>LLM</span></div>
+      </div>
+      <div class="pcard reveal">
+        <div class="p-tag-row"><span class="p-lab">Shanghai Pudong Software</span><span class="p-status">2026.06</span></div>
+        <h3>AI 河道巡检项目</h3>
+        <p>参与环境监测方向的 AI 河道巡检项目实习，整理识别青苔、管道渗漏、水渍等视觉异常的技术指标，参与研发团队讨论并协助撰写项目文档。</p>
+        <div class="p-tags"><span>Computer Vision</span><span>Environmental</span></div>
+      </div>
+      <div class="pcard reveal">
+        <div class="p-tag-row"><span class="p-lab">Inspirit AI Scholars</span><span class="p-status">2024.03 — 06</span></div>
+        <h3>肺炎自动检测：模型对比研究</h3>
+        <p>开发并比较 Sequential、CNN 与 Transfer Learning 模型，使用数据增强并分析模型中潜在的种族与性别偏见。</p>
+        <div class="p-tags"><span>CNN</span><span>Transfer Learning</span><span>Bias</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule wrap">
+
+<!-- ============ RESUME ============ -->
+<section id="resume">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">03 · Résumé</div>
+      <h2 class="section-title">教育背景与经历</h2>
+    </div>
+
+    <div class="resume-block reveal">
+      <span class="rb-label">Education</span>
+      <div class="entry">
+        <div class="e-date">2025.09 <span class="ribbon">Present</span></div>
+        <div class="e-body"><h4>Smith College</h4><div class="e-org">Northampton, MA · BA · 神经科学与计算机科学专业 · GPA 3.96/4.0</div><p>相关课程：神经科学基础、临床神经科学、基因组学与遗传学、分子细胞系统、线性代数、数据科学导论、计算机科学导论。</p></div>
+      </div>
+      <div class="entry">
+        <div class="e-date">2022 — 2025</div>
+        <div class="e-body"><h4>上海市西南位育中学</h4><div class="e-org">Southwest Weiyu High School, Shanghai</div></div>
+      </div>
+    </div>
+
+    <div class="resume-block reveal">
+      <span class="rb-label">Research &amp; Academic Experience</span>
+      <div class="entry"><div class="e-date">2025.11 <span class="ribbon">Present</span></div><div class="e-body"><h4>Research Assistant</h4><div class="e-org">Barresi Lab, Smith College</div><p>研究 metrn/metrn-like 敲低对斑马鱼脊髓放射状胶质细胞发育的影响，使用 HCR、免疫染色与共聚焦显微镜量化基因表达模式；代表 Meteorin 团队在 Celebrating Collaborations 海报展中展示研究成果（约 8 小时/周）。</p></div></div>
+      <div class="entry"><div class="e-date">2026.01 <span class="ribbon">Present</span></div><div class="e-body"><h4>Research Assistant</h4><div class="e-org">Data Infrastructure Lab, Smith College</div><p>Android 逆向工程，分析数据隐私漏洞，合作撰写学术论文（撰写中）。</p></div></div>
+      <div class="entry"><div class="e-date">2026.05 — 06</div><div class="e-body"><h4>Research Fellow</h4><div class="e-org">Summer Undergraduate Research Fellowship (SURF), Smith College</div><p>研究 Metrn/MetrnL 缺失斑马鱼的肌肉发育，进行全胚胎与冷冻切片免疫染色（MTJ、NMJ 标记物），用 Fiji 与 R 采集分析荧光图像并量化肌纤维方向。</p></div></div>
+      <div class="entry"><div class="e-date">2026.06</div><div class="e-body"><h4>Project Intern, Innovation Division</h4><div class="e-org">Shanghai Pudong Software Technologies Service Co., Ltd.</div><p>参与 AI 河道巡检项目，整理识别青苔、管道渗漏、水渍等视觉异常的技术指标，参与研发团队讨论并协助撰写项目文档。</p></div></div>
+      <div class="entry"><div class="e-date">2026.07</div><div class="e-body"><h4>Research Project</h4><div class="e-org">Sungkyunkwan University Summer Program</div><p>探究 EEG 信号与消费者购买意图的关系，用 Python 完成数据采集、预处理、统计分析与可视化，结合 LLM 辅助文本分析，撰写并展示研究论文。</p></div></div>
+      <div class="entry"><div class="e-date">2026.01 <span class="ribbon">Present</span></div><div class="e-body"><h4>Teaching Assistant</h4><div class="e-org">BIO 133 – Molecules, Cells, Systems, Smith College</div><p>准备实验试剂与器材，协助本科生实验课程（每周 6-7 小时）。</p></div></div>
+      <div class="entry"><div class="e-date">2024.01 — 02</div><div class="e-body"><h4>Research Assistant</h4><div class="e-org">Center for Systems Biomedicine, Shanghai Jiao Tong University</div><p>参与 293T 细胞病毒包膜实验、质粒扩增提取转化转染，应用 PCR 与凝胶电泳验证遗传组分。</p></div></div>
+      <div class="entry"><div class="e-date">2023.01 — 05</div><div class="e-body"><h4>Participant</h4><div class="e-org">Biostatistics Analysis · Harvard University (Prof. Sam Richardson)</div><p>用 R Studio 对医院寿命数据应用线性回归与概率分布理论，合作分析乌拉圭经济状况与健康因素的相关性。</p></div></div>
+      <div class="entry"><div class="e-date">2024.03 — 06</div><div class="e-body"><h4>Participant</h4><div class="e-org">Inspirit AI Scholars</div><p>开发并比较 Sequential、CNN、Transfer Learning 模型用于肺炎自动检测，分析模型中的偏见问题。</p></div></div>
+    </div>
+
+    <div class="resume-block reveal">
+      <span class="rb-label">Leadership &amp; Extracurricular</span>
+      <div class="entry"><div class="e-date">2026.02 <span class="ribbon">Present</span></div><div class="e-body"><h4>Publicity Team Leader</h4><div class="e-org">International Student Organization (ISO)</div><p>设计活动海报、宣传册与采访视频；管理 Instagram 内容以提升校园参与度，统筹宣传团队协作与发布节奏。</p></div></div>
+      <div class="entry"><div class="e-date">2024.05 — 2025.05</div><div class="e-body"><h4>News Department President</h4><div class="e-org">Student Union, Southwest Weiyu High School</div><p>负责摄影、视频制作、稿件编辑；联合发起 "The Diary" 摄影义卖，协调五所国际学校为学生公益项目筹款；组织首届校园短片电影节。</p></div></div>
+      <div class="entry"><div class="e-date">2023.09 — 2025.05</div><div class="e-body"><h4>President</h4><div class="e-org">Roots &amp; Shoots "Organic Farming" Club</div><p>组织校园生物多样性记录、环保产品制作与蔬菜种植等月度活动。</p></div></div>
+    </div>
+
+    <div class="resume-block reveal" style="margin-bottom:0;">
+      <span class="rb-label">Skills</span>
+      <div class="skills-grid">
+        <div><span class="cat-label">Laboratory</span><div class="skill-pills"><span>ZEISS ZEN</span><span>HCR</span><span>Immunostaining</span><span>PCR</span><span>Gel Electrophoresis</span><span>Plasmid Transfection</span></div></div>
+        <div><span class="cat-label">Technical</span><div class="skill-pills"><span>Python</span><span>R Studio</span><span>MATLAB</span><span>Shell Scripting</span><span>Git</span></div></div>
+        <div><span class="cat-label">Design &amp; Media</span><div class="skill-pills"><span>Photoshop</span><span>Illustrator</span><span>Premiere Pro</span><span>Canva</span><span>Digital Photography</span></div></div>
+        <div><span class="cat-label">Languages</span><div class="skill-pills"><span>Mandarin (Native)</span><span>English (Fluent)</span><span>Spanish &amp; Japanese (Interests)</span></div></div>
+      </div>
+    </div>
+
+    <div class="resume-cta reveal">
+      <a href="Zihan_Zhang_Resume.pdf" class="btn btn-primary" download>下载完整简历 (PDF)</a>
+      <p class="note-txt">完整联系方式（含电话）请见 PDF 简历内</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NOTES ============ -->
+<section id="notes">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">04 · Notes</div>
+      <h2 class="section-title">留给想象力的地方</h2>
+    </div>
+    <div class="journal-list reveal">
+      <div class="j-row"><span class="jt">用 HCR 看清一个胚胎发育的瞬间</span><span class="jd">即将发布</span></div>
+      <div class="j-row"><span class="jt">二胡教会我的耐心</span><span class="jd">即将发布</span></div>
+      <div class="j-row"><span class="jt">一个 INFJ 眼中的实验室生活</span><span class="jd">即将发布</span></div>
+    </div>
+    <div class="journal-note">这里以后会放一些安静的、不太正经的小笔记。</div>
+  </div>
+</section>
+
+<!-- ============ CONTACT (one dark closing moment) ============ -->
+<section class="zone-night" id="contact">
+  <div class="wrap contact-inner">
+    <h2>Let's talk research,<br>code, or film photography.</h2>
+    <p>无论是关于神经科学研究、数据项目，还是单纯想聊聊摄影和音乐，都欢迎写信给我。</p>
+    <div class="contact-links">
+      <a class="clink" href="mailto:hzhang29@smith.edu">hzhang29@smith.edu</a>
+      <a class="clink" href="https://github.com/your-username" target="_blank" rel="noopener">GitHub</a>
+      <a class="clink" href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>© 2026 张梓涵 · Zihan Zhang</span>
+    <span>白天做实验，夜晚写代码，偶尔拉二胡</span>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('menuToggle');
+  const navlinks = document.getElementById('navlinks');
+  toggle.addEventListener('click', () => navlinks.classList.toggle('open'));
+  navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navlinks.classList.remove('open')));
+
+  const sections = document.querySelectorAll('section[id]');
+  const navA = document.querySelectorAll('.navlinks a');
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        navA.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id));
+      }
+    });
+  }, { rootMargin: '-40% 0px -50% 0px' });
+  sections.forEach(s => spy.observe(s));
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const ro = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){ entry.target.classList.add('in'); ro.unobserve(entry.target); }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => ro.observe(el));
+</script>
+
+</body>
+</html>
