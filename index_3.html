@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Zihan Zhang — Neuroscience and Computer Science at Smith College.">
+  <title>Z.H. | Zihan Zhang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,600;6..96,700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&family=Noto+Serif+SC:wght@400;500;600&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --paper:#f7f1e5; --cream:#fffaf1; --ink:#24221d; --muted:#736c5d; --line:rgba(36,34,29,.15); --red:#a84936; --green:#40564b; --night:#192322; --shadow:0 15px 35px rgba(43,35,23,.13); }
+    * { box-sizing:border-box; } html { scroll-behavior:smooth; } body { margin:0; color:var(--ink); background:var(--paper); background-image:linear-gradient(rgba(80,62,38,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(80,62,38,.045) 1px,transparent 1px); background-size:28px 28px; font:400 15px/1.7 "DM Sans",sans-serif; overflow-x:hidden; }
+    h1,h2,h3,h4,p { margin:0; } h1,h2,h3,h4 { font-family:"Bodoni Moda","Noto Serif SC",serif; font-weight:600; } a { color:inherit; text-decoration:none; } img { display:block; max-width:100%; } .wrap { width:min(1140px,calc(100% - 48px)); margin:auto; }
+    .script { font-family:"Caveat",cursive; }
+    header { position:fixed; inset:0 0 auto; z-index:20; border-bottom:1px solid transparent; transition:.25s; } header.scrolled { background:rgba(247,241,229,.9); border-color:var(--line); backdrop-filter:blur(12px); } nav { height:68px; display:flex; align-items:center; justify-content:space-between; } .logo { font:600 25px/1 "Bodoni Moda",serif; color:var(--red); letter-spacing:0; } .navlinks { display:flex; gap:24px; } .navlinks a { color:var(--muted); font:500 10px/1 "DM Mono",monospace; letter-spacing:.08em; text-transform:uppercase; } .navlinks a.active,.navlinks a:hover { color:var(--red); } .menu { display:none; padding:4px; border:0; background:none; color:var(--ink); font-size:22px; }
+    .hero { min-height:720px; display:grid; align-items:center; padding:112px 0 70px; } .hero-grid { display:grid; grid-template-columns:1.03fr .97fr; gap:70px; align-items:center; } .kicker,.section-index { color:var(--red); font:500 10px/1.4 "DM Mono",monospace; letter-spacing:.12em; text-transform:uppercase; } .kicker::before { content:""; display:inline-block; width:24px; height:1px; margin:0 10px 3px 0; background:currentColor; }
+    h1 { max-width:650px; margin:18px 0 15px; font-size:clamp(49px,6.5vw,82px); line-height:.99; letter-spacing:0; } .hero h1 em { color:var(--red); font-weight:400; } .hero-cn { font-family:"Noto Serif SC",serif; font-size:17px; color:var(--muted); } .hero-copy { max-width:460px; margin-top:20px; color:var(--muted); } .actions { display:flex; flex-wrap:wrap; gap:11px; margin-top:30px; } .button { display:inline-flex; align-items:center; min-height:42px; padding:0 17px; border:1px solid var(--ink); font:500 11px/1 "DM Mono",monospace; letter-spacing:.04em; transition:transform .2s,background .2s,color .2s; } .button:hover { transform:translateY(-2px); } .button.dark { color:var(--paper); background:var(--ink); } .button.dark:hover { background:var(--red); border-color:var(--red); }
+
+    /* ===== hero film — minimal single strip, no clunky reel ===== */
+    .film-stage { position:relative; height:460px; display:flex; align-items:center; justify-content:center; }
+    .film-label { position:absolute; top:0; right:6px; color:var(--red); font:500 10px/1 "DM Mono",monospace; letter-spacing:.14em; }
+    .filmstrip { position:relative; width:230px; height:400px; padding:0 20px; }
+    .filmstrip::before,.filmstrip::after { content:""; position:absolute; top:0; bottom:0; width:14px; background-image:radial-gradient(circle,var(--paper) 3px,transparent 3.2px); background-size:14px 26px; background-repeat:repeat-y; opacity:.9; }
+    .filmstrip::before { left:0; } .filmstrip::after { right:0; }
+    .filmstrip-mask { position:relative; height:100%; overflow:hidden; background:#100f0d; box-shadow:var(--shadow); }
+    .frames { display:grid; gap:2px; animation:roll 16s linear infinite; }
+    .frame { position:relative; height:200px; background:center/cover; filter:saturate(.72) contrast(1.08) sepia(.08); }
+    .frame::after { content:""; position:absolute; inset:0; box-shadow:inset 0 0 0 1px rgba(247,241,229,.18); }
+    .frame:nth-child(1){background-image:url("assets/boston.jpg")}
+    .frame:nth-child(2){background-image:url("assets/snow.jpg")}
+    .frame:nth-child(3){background-image:url("assets/film-contact-sheet.jpg")}
+    .frame:nth-child(4){background-image:url("assets/lab-whiteboard.jpg")}
+    .frame:nth-child(5){background-image:url("assets/boston.jpg")}
+    .frame:nth-child(6){background-image:url("assets/snow.jpg")}
+    @keyframes roll{to{transform:translateY(-808px)}}
+
+    section { padding:112px 0; position:relative; } .section-head { display:flex; justify-content:space-between; align-items:end; gap:24px; margin-bottom:44px; padding-bottom:18px; border-bottom:1px solid var(--line); } .section-title { margin-top:8px; font-size:clamp(31px,4vw,45px); line-height:1.1; } .section-note { max-width:340px; color:var(--muted); font-size:13px; } .tape { position:absolute; width:58px; height:18px; background:rgba(168,73,54,.26); transform:rotate(-4deg); }
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:44px; align-items:start; } .note-stack { display:grid; gap:18px; } .note { position:relative; padding:25px 27px; background:var(--cream); box-shadow:var(--shadow); } .note:nth-child(2) { margin-left:34px; transform:rotate(1deg); } .note .tape { top:-9px; left:37px; background:rgba(64,86,75,.25); } .note-label { display:block; margin-bottom:9px; color:var(--red); font:500 10px/1 "DM Mono",monospace; letter-spacing:.1em; text-transform:uppercase; } .note h3 { margin-bottom:9px; font-size:22px; } .note ul { margin:0; padding:0; list-style:none; color:#554e43; font-size:13px; } .note li { margin:7px 0; padding-left:14px; } .note li::before { content:"—"; margin-left:-14px; margin-right:5px; color:var(--red); }
+
+    /* ===== neuron / neural-net panel ===== */
+    .neural-paper { position:relative; min-height:485px; overflow:hidden; background:#e7dec9; box-shadow:var(--shadow); transform:rotate(-.7deg); } .neural-paper > .tape { right:36px; top:-7px; background:rgba(168,73,54,.26); } .neural-paper svg { position:absolute; width:100%; height:100%; } .neural-caption { position:absolute; inset:auto 22px 18px auto; color:#8a7c62; font:500 11px/1.5 "Caveat",cursive; font-size:17px; text-align:right; max-width:200px; }
+
+    .life { background:var(--night); color:#f2eadc; overflow:hidden; } .life::before { content:""; position:absolute; inset:0; opacity:.25; background:radial-gradient(circle at 12% 22%,#d5c796 0 1px,transparent 1.5px),radial-gradient(circle at 76% 12%,#d5c796 0 1px,transparent 1.5px),radial-gradient(circle at 54% 42%,#d5c796 0 1px,transparent 1.5px); background-size:130px 130px; } .life .section-head { border-color:rgba(255,250,241,.18); } .life .section-index { color:#c9ae82; } .life .section-note { color:#c5c4b7; }
+
+    /* ===== life slices — desk collage, torn paper + tape, not a grid ===== */
+    .life-board { position:relative; min-height:640px; }
+    .slice { position:absolute; overflow:hidden; background:#2e3832 center/cover; box-shadow:0 18px 30px rgba(0,0,0,.35); }
+    .slice::before { content:""; position:absolute; inset:0; background:linear-gradient(180deg,transparent 55%,rgba(10,10,8,.55)); }
+    .slice-tape { position:absolute; width:52px; height:16px; background:rgba(247,241,229,.28); z-index:2; }
+    .slice-label { position:absolute; z-index:1; bottom:16px; left:18px; right:18px; font:500 10px/1 "DM Mono",monospace; letter-spacing:.08em; text-transform:uppercase; color:#e4dccd; }
+    .slice-label span { display:block; margin-top:6px; font-family:"Caveat",cursive; font-size:22px; letter-spacing:0; text-transform:none; color:#f4ecdc; }
+    .slice.s1 { width:40%; left:0; top:26px; height:300px; transform:rotate(-2deg); background-image:url("assets/astronomy/star-trails.jpg"); }
+    .slice.s1 .slice-tape { top:-8px; left:38%; transform:rotate(-5deg); }
+    .slice.s2 { width:27%; right:4%; top:0; height:230px; transform:rotate(3deg); background-image:url("assets/film-contact-sheet.jpg"); }
+    .slice.s2 .slice-tape { top:-7px; right:20%; transform:rotate(6deg); }
+    .slice.s3 { width:24%; left:6%; bottom:0; height:250px; transform:rotate(2.5deg); background-image:url("assets/coffee.jpg"); }
+    .slice.s3 .slice-tape { top:-7px; left:30%; transform:rotate(-4deg); }
+    .slice.s4 { width:30%; right:0; bottom:20px; height:290px; transform:rotate(-1.5deg); background-image:url("assets/erhu.jpg"); }
+    .slice.s4 .slice-tape { top:-8px; right:34%; transform:rotate(3deg); }
+    .slice.s5 { width:22%; left:32%; top:120px; height:190px; transform:rotate(-4deg); background:var(--cream); box-shadow:0 18px 30px rgba(0,0,0,.35); }
+    .slice.s5 .slice-tape { display:none; }
+    .slice.s5 .postcard-face { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; padding:14px; text-align:center; color:#4b4536; font-family:"Caveat",cursive; font-size:20px; line-height:1.25; }
+    @media (max-width:900px){ .life-board{min-height:auto} .slice{position:relative; width:min(360px,86%)!important; margin:34px auto; transform:none!important; height:230px!important;} .slice-tape{display:none} }
+
+    .project-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:22px; } .project { position:relative; min-height:270px; padding:28px; background:var(--cream); box-shadow:0 9px 20px rgba(43,35,23,.07); } .project:nth-child(even) { transform:rotate(.7deg); } .project:nth-child(odd) { transform:rotate(-.5deg); } .project .tape { top:-8px; left:30px; background:rgba(64,86,75,.22); } .project-meta { display:flex; justify-content:space-between; gap:8px; color:var(--red); font:500 9px/1.4 "DM Mono",monospace; letter-spacing:.06em; text-transform:uppercase; } .project h3 { margin:18px 0 9px; font-size:22px; line-height:1.2; } .project p { color:var(--muted); font-size:13px; } .tags { position:absolute; bottom:25px; display:flex; flex-wrap:wrap; gap:6px; } .tags span { padding:3px 7px; border:1px solid var(--line); color:var(--muted); font:400 9px/1 "DM Mono",monospace; }
+    .resume { background:var(--cream); } .resume .section-head { margin-bottom:25px; } .resume-block { margin-bottom:43px; } .resume-label { display:block; padding-bottom:8px; color:var(--red); border-bottom:2px solid var(--red); font:500 10px/1 "DM Mono",monospace; letter-spacing:.1em; text-transform:uppercase; } .entry { display:grid; grid-template-columns:170px 1fr; gap:28px; padding:21px 8px; border-bottom:1px solid var(--line); } .date { color:var(--green); font:500 10px/1.5 "DM Mono",monospace; letter-spacing:.04em; } .entry h4 { font-size:18px; line-height:1.3; } .org { margin:3px 0 7px; color:var(--muted); font:500 10px/1.4 "DM Mono",monospace; letter-spacing:.03em; } .entry p { max-width:720px; color:#554e43; font-size:13px; } .skills { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; margin-top:20px; } .skill-group h4 { margin-bottom:8px; font-size:16px; } .skill-group p { color:var(--muted); font-size:13px; }
+    .notes-list { border-top:1px solid var(--line); } .journal { display:flex; justify-content:space-between; gap:20px; padding:19px 0; border-bottom:1px solid var(--line); font-family:"Noto Serif SC",serif; } .journal time { flex:none; color:var(--muted); font:400 10px/1.7 "DM Mono",monospace; letter-spacing:.05em; } .contact { color:#eee7d9; background:var(--night); text-align:center; } .contact h2 { font-size:clamp(36px,5vw,56px); line-height:1.08; } .contact p { max-width:460px; margin:16px auto 28px; color:#bdb9ad; } .contact .button { border-color:#eee7d9; } .contact .button:hover { color:var(--paper); border-color:var(--red); background:var(--red); } footer { padding:25px 0; color:#9d988d; background:var(--night); border-top:1px solid rgba(255,255,255,.12); font:400 10px/1 "DM Mono",monospace; } footer .wrap { display:flex; justify-content:space-between; gap:15px; }
+    .reveal { opacity:0; transform:translateY(20px); transition:opacity .75s ease,transform .75s ease; } .reveal.in { opacity:1; transform:none; } @media (prefers-reduced-motion:reduce) { html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.frames{animation:none} }
+    @media (max-width:780px) { .wrap{width:min(100% - 34px,1140px)} .navlinks { position:absolute; top:68px; left:0; right:0; display:none; padding:18px; background:var(--paper); border-bottom:1px solid var(--line); flex-direction:column; } .navlinks.open{display:flex}.menu{display:block}.hero{min-height:auto;padding:128px 0 78px}.hero-grid,.about-grid{grid-template-columns:1fr;gap:45px}.film-stage{height:400px}.section-head{display:block}.section-note{margin-top:13px}.project-grid,.skills{grid-template-columns:1fr}.entry{grid-template-columns:1fr;gap:5px}.entry{padding-left:0;padding-right:0} }
+  </style>
+</head>
+<body>
+  <header id="header"><nav class="wrap"><a class="logo" href="#home" aria-label="Home">Z.H.</a><div class="navlinks" id="navlinks"><a href="#home">Home</a><a href="#about">About</a><a href="#life">Slices</a><a href="#projects">Projects</a><a href="#resume">Resume</a><a href="#notes">Notes</a></div><button class="menu" id="menu" aria-label="Open navigation" aria-expanded="false">☰</button></nav></header>
+  <main>
+    <section class="hero" id="home"><div class="wrap hero-grid"><div class="reveal"><div class="kicker">Neuroscience · Computer Science · Smith College</div><h1>Zihan Zhang<br><em>observes closely.</em></h1><p class="hero-cn">张梓涵 · 神经科学 + 计算机科学</p><p class="hero-copy">Undergraduate researcher at Smith College, currently working with EEG research at SKKU. I like questions that hold up in a lab, a dataset, and a long walk home.</p><div class="actions"><a class="button dark" href="#resume">View Resume</a><a class="button" href="#projects">Selected Work</a></div></div><div class="film-stage reveal"><span class="film-label">35MM ARCHIVE</span><div class="filmstrip"><div class="filmstrip-mask"><div class="frames"><i class="frame"></i><i class="frame"></i><i class="frame"></i><i class="frame"></i><i class="frame"></i><i class="frame"></i><i class="frame"></i><i class="frame"></i></div></div></div></div></div></section>
+
+    <section id="about"><div class="wrap"><div class="section-head"><div><div class="section-index">01 · Notebook</div><h2 class="section-title">两种尺度，一种耐心</h2></div><p class="section-note">A working notebook: laboratory practice, technical curiosity, and a quieter way of looking.</p></div><div class="about-grid"><div class="note-stack reveal"><article class="note"><i class="tape"></i><span class="note-label">In the lab</span><h3>把一个问题做深</h3><ul><li>在 Barresi Lab 研究斑马鱼脊髓中放射状胶质细胞发育</li><li>以 HCR、免疫染色与共聚焦显微镜建立可检验的证据</li><li>在 Data Infrastructure Lab 进行 Android 逆向工程与隐私研究</li></ul></article><article class="note"><i class="tape"></i><span class="note-label">Outside the lab</span><h3>记录会留下的东西</h3><ul><li>胶片、暗房、望远镜与长曝光</li><li>一杯认真做的咖啡，或一段二胡练习</li><li>总会回到好奇心本身</li></ul></article></div>
+    <div class="neural-paper reveal"><i class="tape"></i>
+      <svg viewBox="0 0 560 490" role="img" aria-label="Biological neuron transitions into an artificial neural network">
+        <defs>
+          <linearGradient id="signal" x1="0" x2="1"><stop stop-color="#a84936"/><stop offset="1" stop-color="#40564b"/></linearGradient>
+          <radialGradient id="soma" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#efe2c6"/><stop offset="1" stop-color="#c9ac7e"/></radialGradient>
+          <filter id="glow"><feGaussianBlur stdDeviation="1.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <!-- dendritic tree: tapering, recursively branching -->
+        <g fill="none" stroke="#7a5f45" stroke-linecap="round">
+          <path d="M175 233 C150 214 138 196 118 190" stroke-width="3"/>
+          <path d="M118 190 C100 185 88 172 70 168" stroke-width="1.8"/>
+          <path d="M118 190 C104 198 92 200 76 210" stroke-width="1.6"/>
+          <path d="M175 233 C140 220 128 200 96 198" stroke-width="2.4"/>
+          <path d="M96 198 C78 194 66 182 48 182" stroke-width="1.4"/>
+          <path d="M96 198 C82 206 70 210 54 216" stroke-width="1.4"/>
+          <path d="M172 255 C130 254 108 268 70 270" stroke-width="3"/>
+          <path d="M70 270 C52 268 40 258 24 258" stroke-width="1.6"/>
+          <path d="M70 270 C56 278 46 288 30 292" stroke-width="1.6"/>
+          <path d="M180 278 C154 300 148 322 116 336" stroke-width="2.6"/>
+          <path d="M116 336 C100 342 90 354 74 362" stroke-width="1.5"/>
+          <path d="M116 336 C104 330 92 332 78 326" stroke-width="1.3"/>
+          <path d="M195 296 C186 330 196 358 176 388" stroke-width="2.4"/>
+          <path d="M176 388 C166 398 162 412 150 422" stroke-width="1.4"/>
+          <path d="M176 388 C184 400 182 412 190 424" stroke-width="1.4"/>
+        </g>
+        <!-- soma -->
+        <path d="M172 202 C205 178 244 196 250 232 C258 270 226 302 190 297 C152 293 138 254 152 226 C158 216 164 209 172 202Z" fill="url(#soma)" stroke="#7a5f45" stroke-width="1.6"/>
+        <ellipse cx="197" cy="245" rx="17" ry="15" fill="#a84936" opacity=".4"/>
+        <!-- axon with myelin sheath segments -->
+        <path d="M250 240 C300 232 330 250 372 246 C412 242 438 258 480 252" fill="none" stroke="#7a5f45" stroke-width="2.6" stroke-linecap="round"/>
+        <g fill="#e9ddc3" stroke="#7a5f45" stroke-width="1.2">
+          <rect x="272" y="228" width="34" height="17" rx="8.5" transform="rotate(-4 289 236)"/>
+          <rect x="316" y="233" width="34" height="17" rx="8.5" transform="rotate(3 333 241)"/>
+          <rect x="360" y="240" width="34" height="17" rx="8.5" transform="rotate(-2 377 248)"/>
+          <rect x="404" y="245" width="34" height="17" rx="8.5" transform="rotate(3 421 253)"/>
+          <rect x="448" y="243" width="30" height="17" rx="8.5" transform="rotate(-3 463 251)"/>
+        </g>
+        <!-- synaptic terminals -->
+        <g fill="none" stroke="#7a5f45" stroke-width="1.6" stroke-linecap="round">
+          <path d="M480 252 C494 246 500 236 512 230"/>
+          <path d="M480 252 C496 254 504 262 518 262"/>
+          <path d="M480 252 C492 264 494 276 504 288"/>
+        </g>
+        <g fill="#c9ac7e" stroke="#7a5f45" stroke-width="1.1">
+          <circle cx="512" cy="230" r="5.5"/><circle cx="518" cy="262" r="5.5"/><circle cx="504" cy="288" r="5.5"/>
+        </g>
+        <!-- signal handing off into network -->
+        <g stroke="url(#signal)" fill="none" opacity=".85" stroke-width="1">
+          <path d="M512 230 L430 150 L430 195 L430 240 L430 285 L430 330"/>
+          <path d="M518 262 L430 150 L430 195 L430 240 L430 285 L430 330"/>
+          <path d="M504 288 L430 195 L430 240 L430 285 L430 330"/>
+        </g>
+        <g stroke="url(#signal)" fill="none" opacity=".8" stroke-width="1">
+          <path d="M430 150 L500 130 M430 150 L500 170 M430 195 L500 130 M430 195 L500 200 M430 240 L500 170 M430 240 L500 230 M430 285 L500 200 M430 285 L500 260 M430 330 L500 230 M430 330 L500 300"/>
+        </g>
+        <g fill="var(--red,#a84936)" filter="url(#glow)">
+          <circle cx="430" cy="150" r="5"/><circle cx="430" cy="195" r="6.5"/><circle cx="430" cy="240" r="5.5"/><circle cx="430" cy="285" r="6"/><circle cx="430" cy="330" r="5"/>
+        </g>
+        <g fill="#40564b" filter="url(#glow)">
+          <circle cx="500" cy="130" r="4.5"/><circle cx="500" cy="170" r="5.5"/><circle cx="500" cy="200" r="4.5"/><circle cx="500" cy="230" r="6"/><circle cx="500" cy="260" r="4.5"/><circle cx="500" cy="300" r="5"/>
+        </g>
+      </svg>
+      <p class="neural-caption">biological signal,<br>read as computation.</p>
+    </div>
+    </div></div></section>
+
+    <section class="life" id="life"><div class="wrap"><div class="section-head"><div><div class="section-index">02 · Personal Slices</div><h2 class="section-title">桌面上的几件事</h2></div><p class="section-note">The objects and practices that make the rest of the work possible.</p></div>
+      <div class="life-board reveal">
+        <article class="slice s1"><i class="slice-tape"></i><div class="slice-label">Nightwatch<span>星轨，望远镜下的月亮</span></div></article>
+        <article class="slice s2"><i class="slice-tape"></i><div class="slice-label">35mm<span>胶片与暗房</span></div></article>
+        <article class="slice s5"><div class="postcard-face">good things<br>take a long exposure.</div></article>
+        <article class="slice s3"><i class="slice-tape"></i><div class="slice-label">Kitchen Notes<span>咖啡与调酒</span></div></article>
+        <article class="slice s4"><i class="slice-tape"></i><div class="slice-label">Erhu<span>练习，不急着完成</span></div></article>
+      </div>
+    </div></section>
+
+    <section id="projects"><div class="wrap"><div class="section-head"><div><div class="section-index">03 · Selected Work</div><h2 class="section-title">实验和代码提出的问题</h2></div><p class="section-note">Research in development, with methods and material evidence kept close to the surface.</p></div><div class="project-grid"><article class="project reveal"><i class="tape"></i><div class="project-meta"><span>Barresi Lab · Smith</span><span>2025.11 —</span></div><h3>放射状胶质细胞与 Metrn/MetrnL</h3><p>研究 metrn/metrn-like 敲低对斑马鱼脊髓放射状胶质细胞发育的影响，以 HCR、免疫染色和共聚焦显微镜量化空间基因表达模式。</p><div class="tags"><span>HCR</span><span>CONFOCAL</span><span>ZEBRAFISH</span></div></article><article class="project reveal"><i class="tape"></i><div class="project-meta"><span>SKKU Summer Program</span><span>2026.07</span></div><h3>EEG 与消费购买意图</h3><p>围绕 EEG 信号与消费者购买意图建立研究流程，使用 Python 进行采集、预处理、统计分析、可视化与 LLM 辅助文本分析。</p><div class="tags"><span>EEG</span><span>PYTHON</span><span>LLM</span></div></article><article class="project reveal"><i class="tape"></i><div class="project-meta"><span>Data Infrastructure Lab</span><span>2026.01 —</span></div><h3>Android 逆向工程与数据隐私</h3><p>分析 App 内嵌逻辑，识别数据隐私漏洞与技术不一致之处；与团队合作撰写学术论文。</p><div class="tags"><span>REVERSE ENGINEERING</span><span>PRIVACY</span></div></article><article class="project reveal"><i class="tape"></i><div class="project-meta"><span>SURF · Smith</span><span>2026.05 — 06</span></div><h3>Metrn/MetrnL 缺失与肌肉发育</h3><p>使用全胚胎和冷冻切片免疫染色标记 MTJ、NMJ，以 Fiji 和 R 量化肌纤维方向。</p><div class="tags"><span>IMMUNOSTAINING</span><span>FIJI</span><span>R</span></div></article></div></div></section>
+    <section class="resume" id="resume"><div class="wrap"><div class="section-head"><div><div class="section-index">04 · Resume</div><h2 class="section-title">教育背景与经历</h2></div><p class="section-note">A clear record of the work behind the page.</p></div><div class="resume-block reveal"><span class="resume-label">Education</span><article class="entry"><div class="date">2025.09 — PRESENT</div><div><h4>Smith College</h4><div class="org">Northampton, MA · BA · Neuroscience + Computer Science · GPA 3.96/4.0</div><p>相关课程包括神经科学、临床神经科学、基因组学与遗传学、线性代数、数据科学与计算机科学。</p></div></article></div><div class="resume-block reveal"><span class="resume-label">Research & Academic Experience</span><article class="entry"><div class="date">2025.11 — PRESENT</div><div><h4>Research Assistant</h4><div class="org">Barresi Lab, Smith College</div><p>研究斑马鱼脊髓放射状胶质细胞发育，并于 Celebrating Collaborations 海报展展示研究成果。</p></div></article><article class="entry"><div class="date">2026.01 — PRESENT</div><div><h4>Research Assistant</h4><div class="org">Data Infrastructure Lab, Smith College</div><p>Android 逆向工程和数据隐私研究，合作撰写学术论文。</p></div></article><article class="entry"><div class="date">2026.07</div><div><h4>Research Project</h4><div class="org">Sungkyunkwan University Summer Program</div><p>以 EEG 信号研究消费者购买意图，完成数据处理、统计与可视化流程。</p></div></article><article class="entry"><div class="date">2026.01 — PRESENT</div><div><h4>Teaching Assistant</h4><div class="org">BIO 133 · Molecules, Cells, Systems · Smith College</div><p>准备实验试剂与器材，协助本科生实验课程。</p></div></article></div><div class="resume-block reveal"><span class="resume-label">Tools & Practice</span><div class="skills"><div class="skill-group"><h4>Laboratory</h4><p>HCR · Immunostaining · PCR · Gel Electrophoresis · ZEISS ZEN</p></div><div class="skill-group"><h4>Technical</h4><p>Python · R · MATLAB · Shell Scripting · Git</p></div><div class="skill-group"><h4>Visual</h4><p>Photoshop · Illustrator · Premiere Pro · Digital + Film Photography</p></div><div class="skill-group"><h4>Languages</h4><p>Mandarin · English · Spanish · Japanese</p></div></div></div><div class="actions reveal"><a class="button dark" href="Zihan_Zhang_Resume.pdf" download>Download Full Resume</a></div></div></section>
+    <section id="notes"><div class="wrap"><div class="section-head"><div><div class="section-index">05 · Notes</div><h2 class="section-title">尚在显影</h2></div></div><div class="notes-list reveal"><div class="journal"><span>用 HCR 看清一个胚胎发育的瞬间</span><time>SOON</time></div><div class="journal"><span>二胡教会我的耐心</span><time>SOON</time></div><div class="journal"><span>实验室之外的光线</span><time>SOON</time></div></div></div></section>
+    <section class="contact" id="contact"><div class="wrap"><h2>Research, code,<br>or a good frame of light.</h2><p>关于研究、合作，或任何值得仔细看的事，欢迎来信。</p><div class="actions" style="justify-content:center"><a class="button" href="mailto:hzhang29@smith.edu">hzhang29@smith.edu</a><a class="button" href="https://github.com/your-username" target="_blank" rel="noopener">GitHub</a><a class="button" href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener">LinkedIn</a></div></div></section>
+  </main>
+  <footer><div class="wrap"><span>© 2026 Zihan Zhang</span><span>Smith College · Neuroscience + Computer Science</span></div></footer>
+  <script>
+    const menu=document.querySelector('#menu'),nav=document.querySelector('#navlinks'),header=document.querySelector('#header');
+    menu.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',open)}); nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+    const links=[...nav.querySelectorAll('a')], sections=document.querySelectorAll('section[id]');
+    const spy=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)links.forEach(a=>a.classList.toggle('active',a.hash==='#'+e.target.id))}),{rootMargin:'-40% 0px -48%'}); sections.forEach(s=>spy.observe(s));
+    const reveal=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');reveal.unobserve(e.target)}}),{threshold:.12}); document.querySelectorAll('.reveal').forEach(el=>reveal.observe(el));
+    addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>12),{passive:true});
+  </script>
+</body>
+</html>
