@@ -71,6 +71,21 @@ const NOTES_LIST = [
   "实验室之外的光线",
 ];
 
+const INTERNAL_NOTES = [
+  { top: "10%", left: "10%", text: "Quiet days are the ones I remember most.", bg: "rgba(248,242,232,0.94)", color: "#2f2a22" },
+  { top: "14%", left: "80%", text: "Research is a long, quiet conversation with the world.", bg: "rgba(230,236,229,0.92)", color: "#1f3324" },
+  { top: "18%", left: "48%", text: "Sometimes I write notes to myself in the margins.", bg: "rgba(241,228,226,0.9)", color: "#3f2f2a" },
+  { top: "32%", left: "25%", text: "The margin note becomes the most honest part.", bg: "rgba(255,250,238,0.92)", color: "#2f2a22" },
+  { top: "36%", left: "70%", text: "Hidden thoughts are scattered like field notes.", bg: "rgba(235,244,239,0.9)", color: "#2d3f2e" },
+  { top: "48%", left: "15%", text: "A small circle of light can change how you see the page.", bg: "rgba(245,240,232,0.93)", color: "#312a20" },
+  { top: "54%", left: "60%", text: "INFJ energy is found in the stillness between words.", bg: "rgba(247,243,237,0.92)", color: "#2d2a22" },
+  { top: "60%", left: "33%", text: "I keep my notebooks full of small, scattered questions.", bg: "rgba(252,245,239,0.92)", color: "#342f27" },
+  { top: "68%", left: "82%", text: "Slow observation feels like learning another language.", bg: "rgba(238,244,239,0.9)", color: "#22312a" },
+  { top: "76%", left: "40%", text: "The hidden note feels like a secret in a familiar book.", bg: "rgba(250,244,236,0.93)", color: "#2f2c22" },
+  { top: "84%", left: "18%", text: "I want the page to hold thoughts that only appear when you look close.", bg: "rgba(234,236,238,0.9)", color: "#293035" },
+  { top: "86%", left: "72%", text: "This is a quiet layer of internal world notes.", bg: "rgba(249,244,239,0.92)", color: "#2d2a24" },
+];
+
 const GALLERY = [
   { src: "1538485399081-7191377e8241", caption: "SEOUL / 2026", tag: "35mm", r: -3, dy: 0 },
   { src: "1427501482951-3da9b725be23", caption: "STAR TRAILS / MA", tag: "LONG EXP", r: 2, dy: -24 },
@@ -111,6 +126,77 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
       transition: `opacity 0.75s ease ${delay}s, transform 0.75s ease ${delay}s`,
     }}>
       {children}
+    </div>
+  );
+}
+
+function InternalWorld() {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [pos, setPos] = useState({ x: -9999, y: -9999 });
+  const [wrapperRect, setWrapperRect] = useState<DOMRect | null>(null);
+
+  useEffect(() => {
+    const updateRect = () => {
+      const wrapper = wrapperRef.current;
+      if (!wrapper) return;
+      setWrapperRect(wrapper.getBoundingClientRect());
+    };
+    updateRect();
+    window.addEventListener("resize", updateRect);
+    return () => window.removeEventListener("resize", updateRect);
+  }, []);
+
+  useEffect(() => {
+    const onMove = (event: MouseEvent) => {
+      const wrapper = wrapperRef.current;
+      if (!wrapper) return;
+      const rect = wrapper.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+      if (x < 0 || y < 0 || x > rect.width || y > rect.height) {
+        setPos({ x: -9999, y: -9999 });
+        return;
+      }
+      setPos({ x, y });
+    };
+    window.addEventListener("mousemove", onMove, { passive: true });
+    return () => window.removeEventListener("mousemove", onMove);
+  }, []);
+
+  return (
+    <div ref={wrapperRef} style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 2 }}>
+      {INTERNAL_NOTES.map((note, index) => {
+        const noteX = wrapperRect ? (parseFloat(note.left) / 100) * wrapperRect.width : 0;
+        const noteY = wrapperRect ? (parseFloat(note.top) / 100) * wrapperRect.height : 0;
+        const distance = Math.hypot(pos.x - noteX, pos.y - noteY);
+        const visible = distance < 72;
+
+        const rotate = index % 2 === 0 ? -2 : 2;
+        return (
+          <div key={index} style={{
+            position: "absolute",
+            top: note.top,
+            left: note.left,
+            opacity: visible ? 1 : 0,
+            transform: visible ? `translate(-50%, -50%) scale(1) rotate(${rotate}deg)` : `translate(-50%, -50%) scale(0.92) rotate(${rotate}deg)`,
+            transition: "opacity 0.16s ease, transform 0.16s ease",
+            fontFamily: SANS,
+            fontSize: 12,
+            lineHeight: 1.45,
+            color: note.color,
+            background: note.bg,
+            padding: "6px 10px",
+            borderRadius: 10,
+            transformOrigin: "center",
+            boxShadow: visible ? "0 10px 22px rgba(0,0,0,0.1)" : "none",
+            maxWidth: 160,
+            whiteSpace: "normal",
+            pointerEvents: "none",
+          }}>
+            {note.text}
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -166,7 +252,7 @@ function Cursor() {
   return (
     <div ref={dotRef} style={{
       position: "fixed", pointerEvents: "none", zIndex: 9999,
-      width: big ? 52 : 8, height: big ? 52 : 8,
+      width: big ? 58 : 12, height: big ? 58 : 12,
       borderRadius: "50%",
       background: C.bone,
       mixBlendMode: "difference",
@@ -254,6 +340,7 @@ function Hero() {
       padding: "112px 0 48px",
       background: C.green, color: C.bone, overflow: "hidden",
     }}>
+
       {/* parallax ring */}
       <div style={{
         position: "absolute",
@@ -392,44 +479,46 @@ function Intro() {
           </Reveal>
 
           <Reveal delay={0.15}>
-            <div style={{
-              display: "grid",
-              gridTemplateColumns: "1.15fr 0.85fr",
-              gridTemplateRows: "190px 190px",
-              gap: 13,
-            }}>
-              {[
-                { src: "1538485399081-7191377e8241", caption: "SEOUL / 2026", span: true, rotate: -2, mt: 0, ml: 0 },
-                { src: "1533577116850-9cc66cad8a9b", caption: "WALKING NOTES", span: false, rotate: 3, mt: 23, ml: 0 },
-                { src: "1427501482951-3da9b725be23", caption: "NIGHTWATCH", span: false, rotate: 1, mt: 0, ml: 30 },
-              ].map((img, i) => (
-                <figure key={i} style={{
-                  position: "relative", margin: 0, overflow: "hidden",
-                  background: C.ink,
-                  border: "7px solid #fffaf0",
-                  boxShadow: `7px 8px 0 ${C.ink}`,
-                  transform: `rotate(${img.rotate}deg)`,
-                  gridRow: img.span ? "span 2" : undefined,
-                  marginTop: img.mt,
-                  marginLeft: img.ml,
-                  transition: "transform 0.35s ease",
-                }}
-                  onMouseEnter={e => (e.currentTarget as HTMLElement).style.transform = `rotate(0deg) scale(1.03)`}
-                  onMouseLeave={e => (e.currentTarget as HTMLElement).style.transform = `rotate(${img.rotate}deg)`}
-                  data-mag
-                >
-                  <img
-                    src={`https://images.unsplash.com/photo-${img.src}?w=600&h=420&fit=crop&auto=format`}
-                    alt={img.caption}
-                    style={{ width: "100%", height: "100%", objectFit: "cover", filter: "contrast(1.04) saturate(0.76)", display: "block" }}
-                  />
-                  <figcaption style={{
-                    position: "absolute", left: 9, bottom: 8,
-                    padding: "4px 6px", background: C.bone,
-                    font: `500 8px/1 ${MONO}`, letterSpacing: "0.05em", color: C.ink,
-                  }}>{img.caption}</figcaption>
-                </figure>
-              ))}
+            <div style={{ display: "grid", gap: 13 }}>
+              <div style={{
+                display: "grid",
+                gridTemplateColumns: "1.15fr 0.85fr",
+                gridTemplateRows: "190px 190px",
+                gap: 13,
+              }}>
+                {[
+                  { src: "1538485399081-7191377e8241", caption: "SEOUL / 2026", span: true, rotate: -2, mt: 0, ml: 0 },
+                  { src: "1533577116850-9cc66cad8a9b", caption: "WALKING NOTES", span: false, rotate: 3, mt: 23, ml: 0 },
+                  { src: "1427501482951-3da9b725be23", caption: "NIGHTWATCH", span: false, rotate: 1, mt: 0, ml: 30 },
+                ].map((img, i) => (
+                  <figure key={i} style={{
+                    position: "relative", margin: 0, overflow: "hidden",
+                    background: C.ink,
+                    border: "7px solid #fffaf0",
+                    boxShadow: `7px 8px 0 ${C.ink}`,
+                    transform: `rotate(${img.rotate}deg)`,
+                    gridRow: img.span ? "span 2" : undefined,
+                    marginTop: img.mt,
+                    marginLeft: img.ml,
+                    transition: "transform 0.35s ease",
+                  }}
+                    onMouseEnter={e => (e.currentTarget as HTMLElement).style.transform = `rotate(0deg) scale(1.03)`}
+                    onMouseLeave={e => (e.currentTarget as HTMLElement).style.transform = `rotate(${img.rotate}deg)`}
+                    data-mag
+                  >
+                    <img
+                      src={`https://images.unsplash.com/photo-${img.src}?w=600&h=420&fit=crop&auto=format`}
+                      alt={img.caption}
+                      style={{ width: "100%", height: "100%", objectFit: "cover", filter: "contrast(1.04) saturate(0.76)", display: "block" }}
+                    />
+                    <figcaption style={{
+                      position: "absolute", left: 9, bottom: 8,
+                      padding: "4px 6px", background: C.bone,
+                      font: `500 8px/1 ${MONO}`, letterSpacing: "0.05em", color: C.ink,
+                    }}>{img.caption}</figcaption>
+                  </figure>
+                ))}
+              </div>
             </div>
           </Reveal>
         </div>
@@ -1032,18 +1121,21 @@ export default function App() {
       <style>{GLOBAL_STYLES}</style>
       <Cursor />
       <Nav active={active} />
-      <main>
-        <Hero />
-        <Intro />
-        <Ticker />
-        <About />
-        <OffDuty />
-        <Projects />
-        <Resume />
-        <Notes />
-        <Contact />
-        <Photography />
-      </main>
+      <div style={{ position: "relative" }}>
+        <main>
+          <Hero />
+          <Intro />
+          <Ticker />
+          <About />
+          <OffDuty />
+          <Projects />
+          <Resume />
+          <Notes />
+          <Contact />
+          <Photography />
+        </main>
+        <InternalWorld />
+      </div>
       <Footer />
     </>
   );
