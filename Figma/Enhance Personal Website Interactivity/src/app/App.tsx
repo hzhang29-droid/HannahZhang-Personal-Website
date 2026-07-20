@@ -59,11 +59,11 @@ const TRANSLATIONS = {
     },
     intro: {
       title: "From Qingdao & Shanghai,<br />looking outward.",
-      desc: "I am Zihan, born in Qingdao, raised in Shanghai. A Smith College student and INFJ with a soft spot for quiet rooms, imagined worlds, and projects that reward patience.",
+      desc: "I'm Zihan Zhang, born in Qingdao and currently based in Shanghai. I'm a student at Smith College, an INFJ, and a Capricorn.",
     },
     about: {
       title: "About",
-      desc: "I work between <strong>wet lab biology</strong>, computation, and visual culture. In the day: zebrafish, HCR, confocal microscopy and reverse engineering. Interests: film frames, skywatching, coffee, and erhu.",
+      desc: "Research-minded, image-minded. A practice built around attention to detail, repetition, and evidence. I spend most of my time between biology labs, code, and design. By day, I work with zebrafish, HCR, confocal microscopy, and computational research. Outside the lab, I enjoy film photography, astrophotography, and playing the erhu.",
     },
     research: "Research",
     photography: "Photography",
@@ -85,12 +85,12 @@ const TRANSLATIONS = {
       archive: "个人档案 / 2026",
     },
     intro: {
-      title: "来自青岛与上海，<br />向外看。",
-      desc: "我是子涵，生于青岛，长于上海。Smith College 学生，INFJ，喜欢安静的房间、想象的世界和需要耐心的项目。",
+      title: "来自青岛来自大海，<br />向外看。",
+      desc: "我是张梓涵，出生于青岛，目前在上海居住。目前Smith College 在读，INFJ，摩羯座。",
     },
     about: {
       title: "关于",
-      desc: "我在<strong>湿实验生物学</strong>、计算和视觉文化之间工作。白天：斑马鱼、HCR、共聚焦显微镜和逆向工程。兴趣：胶片影像、天文观测、咖啡和二胡。",
+      desc: "我目前在生物相关湿实验、计算和视觉设计之间工作。白天可能可以看到我在实验室做：斑马鱼、HCR、共聚焦显微镜和逆向工程相关内容。但其余时间我可能在胶片影像、天文观测、二胡。",
     },
     research: "科研",
     photography: "摄影",
