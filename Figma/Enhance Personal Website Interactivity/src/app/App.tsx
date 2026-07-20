@@ -36,6 +36,64 @@ const SERIF = 'Fraunces, "Noto Serif SC", serif';
 const SANS = '"DM Sans", sans-serif';
 
 // ─── data ─────────────────────────────────────────────────────────────────────
+// ─── translations ──────────────────────────────────────────────────────────────
+const TRANSLATIONS = {
+  en: {
+    nav: {
+      about: "About",
+      research: "Research",
+      resume: "Resume",
+      notes: "Notes",
+      contact: "Contact",
+    },
+    hero: {
+      title: "Neuroscience / Computer Science",
+      subtitle: "Smith College undergraduate. Zebrafish developmental biology at Barresi Lab. Data infrastructure research at Smith College.",
+      location: "Shanghai · Seoul · Northampton",
+      archive: "Personal archive / 2026",
+    },
+    intro: {
+      title: "From Qingdao & Shanghai,<br />looking outward.",
+      desc: "I am Zihan, born in Qingdao, raised in Shanghai. A Smith College student and INFJ with a soft spot for quiet rooms, imagined worlds, and projects that reward patience.",
+    },
+    about: {
+      title: "About",
+      desc: "I work between <strong>wet lab biology</strong>, computation, and visual culture. In the day: zebrafish, HCR, confocal microscopy and reverse engineering. Interests: film frames, skywatching, coffee, and erhu.",
+    },
+    research: "Research",
+    photography: "Photography",
+    notes: "Notes",
+    resume: "Resume",
+  },
+  zh: {
+    nav: {
+      about: "关于",
+      research: "科研",
+      resume: "简历",
+      notes: "笔记",
+      contact: "联系",
+    },
+    hero: {
+      title: "神经科学 / 计算机科学",
+      subtitle: "Smith College 本科生。Barresi Lab 斑马鱼发育生物学研究。Smith College 数据基础设施研究。",
+      location: "青岛 · 上海 · 首尔 · 北汉普顿",
+      archive: "个人档案 / 2026",
+    },
+    intro: {
+      title: "来自青岛与上海，<br />向外看。",
+      desc: "我是子涵，生于青岛，长于上海。Smith College 学生，INFJ，喜欢安静的房间、想象的世界和需要耐心的项目。",
+    },
+    about: {
+      title: "关于",
+      desc: "我在<strong>湿实验生物学</strong>、计算和视觉文化之间工作。白天：斑马鱼、HCR、共聚焦显微镜和逆向工程。兴趣：胶片影像、天文观测、咖啡和二胡。",
+    },
+    research: "科研",
+    photography: "摄影",
+    notes: "笔记",
+    resume: "简历",
+  },
+};
+
 const NAV_LINKS = [
   { href: "#about", label: "About" },
   { href: "#projects", label: "Research" },
@@ -339,8 +397,9 @@ function Nav({ active }: { active: string }) {
 }
 
 // ─── Hero ─────────────────────────────────────────────────────────────────────
-function Hero() {
+function Hero({ language, setLanguage }: { language: "en" | "zh"; setLanguage: (lang: "en" | "zh") => void }) {
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
+  const t = TRANSLATIONS[language];
 
   const onMove = (e: React.MouseEvent<HTMLElement>) => {
     const r = e.currentTarget.getBoundingClientRect();
@@ -382,6 +441,47 @@ function Hero() {
         pointerEvents: "none",
       }} />
 
+      {/* Language toggle */}
+      <div style={{
+        position: "absolute",
+        top: 112,
+        right: 20,
+        zIndex: 10,
+        display: "flex",
+        gap: 8,
+      }}>
+        <button
+          onClick={() => setLanguage("en")}
+          style={{
+            padding: "4px 10px",
+            font: `500 10px ${MONO}`,
+            letterSpacing: "0.05em",
+            border: `1px solid ${language === "en" ? C.bone : "rgba(243,236,223,0.3)"}`,
+            background: language === "en" ? C.bone : "transparent",
+            color: language === "en" ? C.green : C.bone,
+            cursor: "pointer",
+            transition: "all 0.2s",
+          }}
+        >
+          EN
+        </button>
+        <button
+          onClick={() => setLanguage("zh")}
+          style={{
+            padding: "4px 10px",
+            font: `500 10px ${MONO}`,
+            letterSpacing: "0.05em",
+            border: `1px solid ${language === "zh" ? C.bone : "rgba(243,236,223,0.3)"}`,
+            background: language === "zh" ? C.bone : "transparent",
+            color: language === "zh" ? C.green : C.bone,
+            cursor: "pointer",
+            transition: "all 0.2s",
+          }}
+        >
+          中文
+        </button>
+      </div>
+
       <div style={{
         ...wrap,
         position: "relative", zIndex: 1,
@@ -395,8 +495,8 @@ function Hero() {
             display: "flex", justifyContent: "space-between",
             font: `500 10px/1.3 ${MONO}`, letterSpacing: "0.08em", textTransform: "uppercase",
           }}>
-            <span>Personal archive / 2026</span>
-            <span>Shanghai · Seoul · Northampton</span>
+            <span>{t.hero.archive}</span>
+            <span>{t.hero.location}</span>
           </div>
           <motion.div
             initial={{ opacity: 0, y: 28 }}
@@ -405,10 +505,10 @@ function Hero() {
             style={{ maxWidth: 310, marginTop: 52 }}
           >
             <span style={{ font: `500 10px/1.2 ${MONO}`, letterSpacing: "0.09em", textTransform: "uppercase", color: "rgba(212,216,207,0.8)" }}>
-              Neuroscience / Computer Science
+              {t.hero.title}
             </span>
             <p style={{ marginTop: 14, color: "#c8ccbc", fontSize: 13, lineHeight: 1.7, fontFamily: SANS }}>
-              Smith College undergraduate. Zebrafish developmental biology at Barresi Lab. Data infrastructure research at Smith College.
+              {t.hero.subtitle}
             </p>
           </motion.div>
         </div>
@@ -453,7 +553,8 @@ function Hero() {
 }
 
 // ─── Intro ────────────────────────────────────────────────────────────────────
-function Intro() {
+function Intro({ language }: { language: "en" | "zh" }) {
+  const t = TRANSLATIONS[language];
   return (
     <section style={{ background: C.bone, padding: "92px 0" }}>
       <div style={wrap} className="intro-grid-wrap">
@@ -464,18 +565,17 @@ function Intro() {
           <Reveal>
             <div>
               <span style={{ font: `500 10px/1.2 ${MONO}`, letterSpacing: "0.09em", textTransform: "uppercase", color: "#9b9890" }}>
-                00 / A little more personal
+                00 / {language === "en" ? "A little more personal" : "更个人一些"}
               </span>
               <h2 style={{
                 fontFamily: SERIF, fontWeight: 500,
                 fontSize: "clamp(47px, 6vw, 86px)",
                 lineHeight: 0.87, letterSpacing: "-0.055em",
                 marginTop: 10,
-              }}>
-                From Qingdao & Shanghai,<br />looking outward.
+              }} dangerouslySetInnerHTML={{ __html: t.intro.title }}>
               </h2>
               <p style={{ maxWidth: 380, marginTop: 22, fontSize: 15, lineHeight: 1.65, color: "#55534f", fontFamily: SANS }}>
-                I am Zihan, born in Qingdao, raised in Shanghai. An INFJ with a soft spot for quiet rooms, imagined worlds, and projects that reward patience.
+                {t.intro.desc}
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 7, marginTop: 26 }}>
                 {TAGS.map(t => (
@@ -567,11 +667,12 @@ function Ticker() {
 }
 
 // ─── About ────────────────────────────────────────────────────────────────────
-function About() {
+function About({ language }: { language: "en" | "zh" }) {
+  const t = TRANSLATIONS[language];
   return (
     <section id="about" style={{ background: C.bone, padding: "105px 0" }}>
       <div style={wrap}>
-        <SectionHead index="01" title={"Close\nobservation."} desc="Research-minded, image-minded. A practice built around attention to detail, repetition, and evidence." />
+        <SectionHead index="01" title={language === "en" ? "Close\nobservation." : "仔细\n观察。"} desc={language === "en" ? "Research-minded, image-minded. A practice built around attention to detail, repetition, and evidence." : "以研究和影像为核心。通过关注细节、重复和证据构建的实践。"} />
         <div style={{
           display: "grid", gridTemplateColumns: "1.05fr 0.95fr",
           gap: "7vw", paddingTop: 52,
@@ -581,10 +682,7 @@ function About() {
               fontFamily: SERIF,
               fontSize: "clamp(23px, 2.7vw, 40px)",
               lineHeight: 1.1, fontWeight: 500,
-            }}>
-              I work between{" "}
-              <strong style={{ fontWeight: 500, color: C.red }}>wet lab biology</strong>
-              , computation, and visual culture. In the day: zebrafish, HCR, confocal microscopy and reverse engineering. Interests: film frames, skywatching, coffee, and erhu.
+            }} dangerouslySetInnerHTML={{ __html: t.about.desc }}>
             </p>
           </Reveal>
 
@@ -1121,6 +1219,7 @@ const GLOBAL_STYLES = `
 // ─── App ──────────────────────────────────────────────────────────────────────
 export default function App() {
   const [active, setActive] = useState("home");
+  const [language, setLanguage] = useState<"en" | "zh">("en");
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
@@ -1139,16 +1238,16 @@ export default function App() {
       <Nav active={active} />
       <div style={{ position: "relative" }}>
         <main>
-          <Hero />
-          <Intro />
+          <Hero language={language} setLanguage={setLanguage} />
+          <Intro language={language} />
           <Ticker />
-          <About />
-          <OffDuty />
-          <Projects />
-          <Resume />
-          <Notes />
+          <About language={language} />
+          <OffDuty language={language} />
+          <Projects language={language} />
+          <Resume language={language} />
+          <Notes language={language} />
           <Contact />
-          <Photography />
+          <Photography language={language} />
         </main>
         <InternalWorld />
       </div>
