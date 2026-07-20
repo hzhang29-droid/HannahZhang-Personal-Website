@@ -10,6 +10,12 @@ import celebratingCollaboration from "../assets/personal-photos/celebrating-coll
 import groupphoto1 from "../assets/personal-photos/groupphoto1.jpg";
 import astrophotography from "../assets/personal-photos/astrophotography.jpg";
 
+// SLICES - Things kept on the desk
+import moonTelescope from "../assets/personal-photos/moon-telescope.jpg";
+import immunostaining from "../assets/personal-photos/immunostaining.jpg";
+import crowdMotion from "../assets/personal-photos/crowd-motion.jpg";
+import groupphoto2 from "../assets/personal-photos/groupphoto2.jpg";
+
 // ─── palette ─────────────────────────────────────────────────────────────────
 const C = {
   bone: "#f3ecdf",
@@ -36,10 +42,10 @@ const NAV_LINKS = [
 const TAGS = ["SHANGHAI → SEOUL → NORTHAMPTON", "INFJ", "FILM", "ERHU", "ASTROPHOTOGRAPHY", "COFFEE"];
 
 const SLICES = [
-  { num: "01", title: "Nightwatch", sub: "星轨、月亮、架好望远镜后等待", img: "1427501482951-3da9b725be23", big: true },
-  { num: "02", title: "35mm", sub: "胶片与暗房", img: "1531931477284-7e16215c9540", big: false },
-  { num: "03", title: "Kitchen notes", sub: "咖啡与调酒", img: "1612175221152-2ca8b0d357d4", big: false },
-  { num: "04", title: "Erhu", sub: "练习，一点点地", img: "1622745563958-297959f28efa", big: false },
+  { num: "01", title: "Nightwatch", sub: "星轨、月亮、架好望远镜后等待", img: moonTelescope, big: true },
+  { num: "02", title: "35mm", sub: "胶片与暗房", img: immunostaining, big: false },
+  { num: "03", title: "Kitchen notes", sub: "咖啡与调酒", img: crowdMotion, big: false },
+  { num: "04", title: "Erhu", sub: "练习，一点点地", img: groupphoto2, big: false },
 ];
 
 const PROJECTS = [
@@ -653,7 +659,7 @@ function OffDuty() {
                 }}
               >
                 <img
-                  src={`https://images.unsplash.com/photo-${s.img}?w=600&h=600&fit=crop&auto=format`}
+                  src={s.img}
                   alt={s.title}
                   style={{
                     position: "absolute", inset: 0, width: "100%", height: "100%",
