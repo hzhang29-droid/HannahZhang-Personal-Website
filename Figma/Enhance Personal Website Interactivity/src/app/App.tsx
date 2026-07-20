@@ -671,6 +671,159 @@ function Ticker() {
   );
 }
 
+// ─── LabImageComparison ───────────────────────────────────────────────────────
+function LabImageComparison() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [position, setPosition] = useState(50);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const percent = Math.max(0, Math.min(100, (x / rect.width) * 100));
+    setPosition(percent);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = e.touches[0].clientX - rect.left;
+    const percent = Math.max(0, Math.min(100, (x / rect.width) * 100));
+    setPosition(percent);
+  };
+
+  return (
+    <div
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      onTouchMove={handleTouchMove}
+      style={{
+        position: "relative",
+        maxWidth: 430,
+        paddingBottom: "11px",
+        background: "#fcf8ee",
+        boxShadow: `15px 15px 0 ${C.ink}`,
+        transform: "rotate(3deg)",
+        overflow: "hidden",
+        cursor: "ew-resize",
+        transition: "transform 0.4s ease",
+      }}
+      onMouseEnter={e => (e.currentTarget as HTMLElement).style.transform = "rotate(0deg)"}
+      onMouseLeave={e => (e.currentTarget as HTMLElement).style.transform = "rotate(3deg)"}
+      data-mag
+    >
+      {/* Base image - immunostaining */}
+      <img
+        src={immunostaining}
+        alt="Immunostaining"
+        style={{
+          display: "block",
+          width: "100%",
+          aspectRatio: "1.05",
+          objectFit: "cover",
+        }}
+      />
+
+      {/* Overlay container for other images */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: `${position}%`,
+          height: "100%",
+          overflow: "hidden",
+          transition: "width 0.05s ease-out",
+        }}
+      >
+        {/* First overlay - immuno on sections */}
+        <img
+          src={immunoOnSections}
+          alt="Immuno on sections"
+          style={{
+            display: "block",
+            width: "430px",
+            height: "100%",
+            objectFit: "cover",
+          }}
+        />
+      </div>
+
+      {/* Divider line */}
+      <div
+        style={{
+          position: "absolute",
+          left: `${position}%`,
+          top: 0,
+          height: "100%",
+          width: "2px",
+          background: C.red,
+          transform: "translateX(-1px)",
+          pointerEvents: "none",
+          transition: "left 0.05s ease-out",
+        }}
+      />
+
+      {/* Handle indicator */}
+      <div
+        style={{
+          position: "absolute",
+          left: `${position}%`,
+          top: "50%",
+          transform: "translate(-50%, -50%)",
+          width: 40,
+          height: 40,
+          background: C.red,
+          borderRadius: "50%",
+          border: `2px solid ${C.bone}`,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          pointerEvents: "none",
+          transition: "left 0.05s ease-out",
+          boxShadow: `0 2px 8px rgba(0,0,0,0.2)`,
+        }}
+      >
+        <span style={{
+          color: C.bone,
+          font: `700 12px ${MONO}`,
+          letterSpacing: "0.1em",
+        }}>{"<>"}</span>
+      </div>
+
+      {/* Bottom label */}
+      <div style={{
+        position: "absolute",
+        bottom: 18,
+        left: 18,
+        font: `500 10px/1 ${MONO}`,
+        letterSpacing: "0.07em",
+        color: C.ink,
+        zIndex: 10,
+      }}>FIELD NOTES / 2026</div>
+
+      {/* Circle archive label */}
+      <div style={{
+        position: "absolute",
+        left: -38,
+        top: -36,
+        width: 93,
+        aspectRatio: "1",
+        border: `2px solid ${C.red}`,
+        borderRadius: "50%",
+        display: "grid",
+        placeItems: "center",
+        color: C.red,
+        background: "#fcf8ee",
+        font: `500 9px/1.25 ${MONO}`,
+        textAlign: "center",
+        transform: "rotate(-13deg)",
+        zIndex: 20,
+      }}>ZIHAN<br />ZHANG<br />ARCHIVE</div>
+    </div>
+  );
+}
+
 // ─── About ────────────────────────────────────────────────────────────────────
 function About({ language }: { language: "en" | "zh" }) {
   const t = TRANSLATIONS[language];
@@ -692,75 +845,13 @@ function About({ language }: { language: "en" | "zh" }) {
           </Reveal>
 
           <Reveal delay={0.15}>
-            <figure style={{
+            <div style={{
               position: "relative",
               maxWidth: 430, justifySelf: "end",
-              padding: "11px 11px 48px",
-              background: "#fcf8ee",
-              boxShadow: `15px 15px 0 ${C.ink}`,
-              transform: "rotate(3deg)",
               margin: 0,
-              transition: "transform 0.4s ease",
-              overflow: "hidden",
-            }}
-              onMouseEnter={e => (e.currentTarget as HTMLElement).style.transform = "rotate(0deg)"}
-              onMouseLeave={e => (e.currentTarget as HTMLElement).style.transform = "rotate(3deg)"}
-              data-mag
-            >
-              {/* Base layer - immunostaining */}
-              <img
-                src={immunostaining}
-                alt="Immunostaining"
-                style={{ display: "block", width: "100%", aspectRatio: "1.05", objectFit: "cover" }}
-              />
-              
-              {/* Middle layer - immuno on sections */}
-              <img
-                src={immunoOnSections}
-                alt="Immuno on sections"
-                style={{
-                  position: "absolute",
-                  top: 0, left: 0,
-                  width: "100%", height: "100%",
-                  objectFit: "cover",
-                  opacity: 0.65,
-                  mixBlendMode: "multiply",
-                }}
-              />
-              
-              {/* Top layer - 70hpf zebrafish */}
-              <img
-                src={zebrafish70hpf}
-                alt="70hpf zebrafish"
-                style={{
-                  position: "absolute",
-                  top: "50%", left: "50%",
-                  transform: "translate(-50%, -50%) rotate(8deg)",
-                  width: "55%", height: "55%",
-                  objectFit: "cover",
-                  opacity: 0.75,
-                  boxShadow: `0 4px 16px rgba(0,0,0,0.15)`,
-                  border: `2px solid ${C.bone}`,
-                }}
-              />
-              
-              <div style={{
-                position: "absolute", bottom: 18, left: 18,
-                font: `500 10px/1 ${MONO}`, letterSpacing: "0.07em", color: C.ink,
-                zIndex: 10,
-              }}>FIELD NOTES / 2026</div>
-              <div style={{
-                position: "absolute", left: -38, top: -36,
-                width: 93, aspectRatio: "1",
-                border: `2px solid ${C.red}`, borderRadius: "50%",
-                display: "grid", placeItems: "center",
-                color: C.red, background: "#fcf8ee",
-                font: `500 9px/1.25 ${MONO}`,
-                textAlign: "center",
-                transform: "rotate(-13deg)",
-                zIndex: 20,
-              }}>ZIHAN<br />ZHANG<br />ARCHIVE</div>
-            </figure>
+            }}>
+              <LabImageComparison />
+            </div>
           </Reveal>
         </div>
       </div>
