@@ -92,13 +92,13 @@ const NOTES_LIST = [
 ];
 
 const INTERNAL_NOTES = [
-  { top: "10%", left: "10%", text: "Quiet days are the ones I remember most.", bg: "rgba(248,242,232,0.94)", color: "#2f2a22" },
+  { top: "10%", left: "10%", text: "Do I dare disturb the universe?", bg: "rgba(248,242,232,0.94)", color: "#2f2a22" },
   { top: "14%", left: "80%", text: "Research is a long, quiet conversation with the world.", bg: "rgba(230,236,229,0.92)", color: "#1f3324" },
-  { top: "18%", left: "48%", text: "Sometimes I write notes to myself in the margins.", bg: "rgba(241,228,226,0.9)", color: "#3f2f2a" },
+  { top: "18%", left: "48%", text: "I contain multitude.", bg: "rgba(241,228,226,0.9)", color: "#3f2f2a" },
   { top: "32%", left: "25%", text: "The margin note becomes the most honest part.", bg: "rgba(255,250,238,0.92)", color: "#2f2a22" },
   { top: "36%", left: "70%", text: "Hidden thoughts are scattered like field notes.", bg: "rgba(235,244,239,0.9)", color: "#2d3f2e" },
   { top: "48%", left: "15%", text: "A small circle of light can change how you see the page.", bg: "rgba(245,240,232,0.93)", color: "#312a20" },
-  { top: "54%", left: "60%", text: "INFJ energy is found in the stillness between words.", bg: "rgba(247,243,237,0.92)", color: "#2d2a22" },
+  { top: "54%", left: "60%", text: "I love infinitely the new day,\ntoday's sun,\ntoday's horse,\ntoday's rowan tree.", bg: "rgba(247,243,237,0.92)", color: "#2d2a22" },
   { top: "60%", left: "33%", text: "I keep my notebooks full of small, scattered questions.", bg: "rgba(252,245,239,0.92)", color: "#342f27" },
   { top: "68%", left: "82%", text: "Slow observation feels like learning another language.", bg: "rgba(238,244,239,0.9)", color: "#22312a" },
   { top: "76%", left: "40%", text: "The hidden note feels like a secret in a familiar book.", bg: "rgba(250,244,236,0.93)", color: "#2f2c22" },
@@ -549,7 +549,7 @@ function Intro() {
 
 // ─── Ticker ───────────────────────────────────────────────────────────────────
 function Ticker() {
-  const items = ["NEUROSCIENCE", "✳", "COMPUTATION", "✳", "FIELD NOTES", "✳", "FILM / NIGHT / SIGNAL", "✳"];
+  const items = ["INFJ", "✳", "CAPRICORN", "✳", "FILM PHOTOGRAPHER", "✳", "ERHU PLAYER", "✳"];
   const doubled = [...items, ...items];
   return (
     <div style={{
