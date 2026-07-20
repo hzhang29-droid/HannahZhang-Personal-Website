@@ -5,15 +5,15 @@ import seoul540 from "../assets/personal-photos/seoul-540.jpg";
 import starTrails from "../assets/personal-photos/star-trails.jpg";
 import fieldTripSky from "../assets/personal-photos/field-trip-sky.jpg";
 import hangzhouWestLake from "../assets/personal-photos/hangzhou-west-lake.jpg";
-import labPoster from "../assets/personal-photos/lab-poster.jpg";
+import crowdMotion from "../assets/personal-photos/crowd-motion.jpg";
 import celebratingCollaboration from "../assets/personal-photos/celebrating-collaboration.jpg";
 import groupphoto1 from "../assets/personal-photos/groupphoto1.jpg";
 import astrophotography from "../assets/personal-photos/astrophotography.jpg";
 
 // SLICES - Things kept on the desk
 import moonTelescope from "../assets/personal-photos/moon-telescope.jpg";
-import immunostaining from "../assets/personal-photos/immunostaining.jpg";
-import crowdMotion from "../assets/personal-photos/crowd-motion.jpg";
+import filmContactSheet from "../assets/personal-photos/film-contact-sheet.jpg";
+import coffeeLatte from "../assets/personal-photos/coffee-latte.jpg";
 import groupphoto2 from "../assets/personal-photos/groupphoto2.jpg";
 
 // Intro - Life photos
@@ -48,8 +48,8 @@ const TAGS = ["SHANGHAI → SEOUL → NORTHAMPTON", "INFJ", "FILM", "ERHU", "AST
 
 const SLICES = [
   { num: "01", title: "Nightwatch", sub: "星轨、月亮、架好望远镜后等待", img: moonTelescope, big: true },
-  { num: "02", title: "35mm", sub: "胶片与暗房", img: immunostaining, big: false },
-  { num: "03", title: "Kitchen notes", sub: "咖啡与调酒", img: crowdMotion, big: false },
+  { num: "02", title: "35mm", sub: "胶片与暗房", img: filmContactSheet, big: false },
+  { num: "03", title: "Kitchen notes", sub: "咖啡与调酒", img: coffeeLatte, big: false },
   { num: "04", title: "Erhu", sub: "练习，一点点地", img: groupphoto2, big: false },
 ];
 
@@ -111,7 +111,7 @@ const GALLERY = [
   { src: starTrails, caption: "STAR TRAILS / MA", tag: "LONG EXP", r: 2, dy: -24 },
   { src: fieldTripSky, caption: "FIELD NOTES / SKY", tag: "ASTRO", r: -1.5, dy: 16 },
   { src: hangzhouWestLake, caption: "WEST LAKE / 2025", tag: "TRAVEL", r: 3, dy: -8 },
-  { src: labPoster, caption: "LAB POSTER", tag: "EXHIBITION", r: -2, dy: 20 },
+  { src: crowdMotion, caption: "CROWD MOTION", tag: "SLOW EXP", r: -2, dy: 20 },
   { src: celebratingCollaboration, caption: "COLLABORATION", tag: "RESEARCH", r: 1.5, dy: -16 },
   { src: groupphoto1, caption: "GROUP / ERHU", tag: "STILL LIFE", r: -3, dy: 12 },
   { src: astrophotography, caption: "ASTRO / FIELD", tag: "NIGHT", r: 2.5, dy: -20 },
