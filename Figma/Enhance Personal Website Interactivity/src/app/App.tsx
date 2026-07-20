@@ -21,6 +21,11 @@ import hainanLife from "../assets/personal-photos/hainan-life.jpg";
 import bostonLife from "../assets/personal-photos/boston-life.jpg";
 import newyorkLife from "../assets/personal-photos/newyork-life.jpg";
 
+// Lab photos - About section
+import immunostaining from "../assets/personal-photos/immunostaining.jpg";
+import immunoOnSections from "../assets/personal-photos/immuno on sections.jpg";
+import zebrafish70hpf from "../assets/personal-photos/70hpf zebrafish.jpg";
+
 // ─── palette ─────────────────────────────────────────────────────────────────
 const C = {
   bone: "#f3ecdf",
@@ -696,19 +701,53 @@ function About({ language }: { language: "en" | "zh" }) {
               transform: "rotate(3deg)",
               margin: 0,
               transition: "transform 0.4s ease",
+              overflow: "hidden",
             }}
               onMouseEnter={e => (e.currentTarget as HTMLElement).style.transform = "rotate(0deg)"}
               onMouseLeave={e => (e.currentTarget as HTMLElement).style.transform = "rotate(3deg)"}
               data-mag
             >
+              {/* Base layer - immunostaining */}
               <img
-                src="https://images.unsplash.com/photo-1594609058337-4b094a308dc1?w=430&h=410&fit=crop&auto=format"
-                alt="Field notes"
-                style={{ display: "block", width: "100%", aspectRatio: "1.05", objectFit: "cover", filter: "contrast(1.06) saturate(0.72)" }}
+                src={immunostaining}
+                alt="Immunostaining"
+                style={{ display: "block", width: "100%", aspectRatio: "1.05", objectFit: "cover" }}
               />
+              
+              {/* Middle layer - immuno on sections */}
+              <img
+                src={immunoOnSections}
+                alt="Immuno on sections"
+                style={{
+                  position: "absolute",
+                  top: 0, left: 0,
+                  width: "100%", height: "100%",
+                  objectFit: "cover",
+                  opacity: 0.65,
+                  mixBlendMode: "multiply",
+                }}
+              />
+              
+              {/* Top layer - 70hpf zebrafish */}
+              <img
+                src={zebrafish70hpf}
+                alt="70hpf zebrafish"
+                style={{
+                  position: "absolute",
+                  top: "50%", left: "50%",
+                  transform: "translate(-50%, -50%) rotate(8deg)",
+                  width: "55%", height: "55%",
+                  objectFit: "cover",
+                  opacity: 0.75,
+                  boxShadow: `0 4px 16px rgba(0,0,0,0.15)`,
+                  border: `2px solid ${C.bone}`,
+                }}
+              />
+              
               <div style={{
                 position: "absolute", bottom: 18, left: 18,
                 font: `500 10px/1 ${MONO}`, letterSpacing: "0.07em", color: C.ink,
+                zIndex: 10,
               }}>FIELD NOTES / 2026</div>
               <div style={{
                 position: "absolute", left: -38, top: -36,
@@ -719,6 +758,7 @@ function About({ language }: { language: "en" | "zh" }) {
                 font: `500 9px/1.25 ${MONO}`,
                 textAlign: "center",
                 transform: "rotate(-13deg)",
+                zIndex: 20,
               }}>ZIHAN<br />ZHANG<br />ARCHIVE</div>
             </figure>
           </Reveal>
