@@ -16,6 +16,11 @@ import immunostaining from "../assets/personal-photos/immunostaining.jpg";
 import crowdMotion from "../assets/personal-photos/crowd-motion.jpg";
 import groupphoto2 from "../assets/personal-photos/groupphoto2.jpg";
 
+// Intro - Life photos
+import hainanLife from "../assets/personal-photos/hainan-life.jpg";
+import bostonLife from "../assets/personal-photos/boston-life.jpg";
+import newyorkLife from "../assets/personal-photos/newyork-life.jpg";
+
 // ─── palette ─────────────────────────────────────────────────────────────────
 const C = {
   bone: "#f3ecdf",
@@ -502,9 +507,9 @@ function Intro() {
                 gap: 13,
               }}>
                 {[
-                  { src: "1538485399081-7191377e8241", caption: "SEOUL / 2026", span: true, rotate: -2, mt: 0, ml: 0 },
-                  { src: "1533577116850-9cc66cad8a9b", caption: "WALKING NOTES", span: false, rotate: 3, mt: 23, ml: 0 },
-                  { src: "1427501482951-3da9b725be23", caption: "NIGHTWATCH", span: false, rotate: 1, mt: 0, ml: 30 },
+                  { src: hainanLife, caption: "HAINAN", span: true, rotate: -2, mt: 0, ml: 0 },
+                  { src: bostonLife, caption: "BOSTON", span: false, rotate: 3, mt: 23, ml: 0 },
+                  { src: newyorkLife, caption: "NEW YORK", span: false, rotate: 1, mt: 0, ml: 30 },
                 ].map((img, i) => (
                   <figure key={i} style={{
                     position: "relative", margin: 0, overflow: "hidden",
@@ -522,7 +527,7 @@ function Intro() {
                     data-mag
                   >
                     <img
-                      src={`https://images.unsplash.com/photo-${img.src}?w=600&h=420&fit=crop&auto=format`}
+                      src={img.src}
                       alt={img.caption}
                       style={{ width: "100%", height: "100%", objectFit: "cover", filter: "contrast(1.04) saturate(0.76)", display: "block" }}
                     />
