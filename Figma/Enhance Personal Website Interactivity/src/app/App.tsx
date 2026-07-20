@@ -44,7 +44,7 @@ const NAV_LINKS = [
   { href: "#contact", label: "Contact" },
 ];
 
-const TAGS = ["SHANGHAI → SEOUL → NORTHAMPTON", "INFJ", "FILM", "ERHU", "ASTROPHOTOGRAPHY", "COFFEE"];
+const TAGS = ["QINGDAO → SHANGHAI → SEOUL → NORTHAMPTON", "INFJ", "FILM", "ERHU", "ASTROPHOTOGRAPHY", "COFFEE"];
 
 const SLICES = [
   { num: "01", title: "Nightwatch", sub: "星轨、月亮、架好望远镜后等待", img: moonTelescope, big: true },
@@ -85,11 +85,7 @@ const CV_ITEMS = [
 
 const SKILLS = ["Python", "R", "MATLAB", "HCR", "Immunostaining", "PCR", "Confocal", "Fiji", "Git", "Film photography"];
 
-const NOTES_LIST = [
-  "用 HCR 看清一个胚胎发育的瞬间",
-  "二胡教会我的耐心",
-  "实验室之外的光线",
-];
+const NOTES_LIST = [];
 
 const INTERNAL_NOTES = [
   { top: "10%", left: "10%", text: "Do I dare disturb the universe?", bg: "rgba(248,242,232,0.94)", color: "#2f2a22" },
@@ -400,7 +396,7 @@ function Hero() {
             font: `500 10px/1.3 ${MONO}`, letterSpacing: "0.08em", textTransform: "uppercase",
           }}>
             <span>Personal archive / 2026</span>
-            <span>Seoul · Northampton</span>
+            <span>Shanghai · Seoul · Northampton</span>
           </div>
           <motion.div
             initial={{ opacity: 0, y: 28 }}
@@ -412,7 +408,7 @@ function Hero() {
               Neuroscience / Computer Science
             </span>
             <p style={{ marginTop: 14, color: "#c8ccbc", fontSize: 13, lineHeight: 1.7, fontFamily: SANS }}>
-              Smith College undergraduate. Currently tracing signals, cells, and questions through an EEG summer research project at SKKU.
+              Smith College undergraduate. Zebrafish developmental biology at Barresi Lab. Data infrastructure research at Smith College.
             </p>
           </motion.div>
         </div>
@@ -476,10 +472,10 @@ function Intro() {
                 lineHeight: 0.87, letterSpacing: "-0.055em",
                 marginTop: 10,
               }}>
-                From Shanghai,<br />looking outward.
+                From Qingdao & Shanghai,<br />looking outward.
               </h2>
               <p style={{ maxWidth: 380, marginTop: 22, fontSize: 15, lineHeight: 1.65, color: "#55534f", fontFamily: SANS }}>
-                I am Zihan, a Smith College student from Shanghai. An INFJ with a soft spot for quiet rooms, imagined worlds, and projects that reward patience.
+                I am Zihan, born in Qingdao, raised in Shanghai. An INFJ with a soft spot for quiet rooms, imagined worlds, and projects that reward patience.
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 7, marginTop: 26 }}>
                 {TAGS.map(t => (
@@ -588,7 +584,7 @@ function About() {
             }}>
               I work between{" "}
               <strong style={{ fontWeight: 500, color: C.red }}>wet lab biology</strong>
-              , computation, and visual culture. In the day: zebrafish, HCR, confocal microscopy and reverse engineering. Later: film frames, skywatching, coffee, and erhu.
+              , computation, and visual culture. In the day: zebrafish, HCR, confocal microscopy and reverse engineering. Interests: film frames, skywatching, coffee, and erhu.
             </p>
           </Reveal>
 
