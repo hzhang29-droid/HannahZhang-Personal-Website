@@ -729,12 +729,12 @@ function About({ language }: { language: "en" | "zh" }) {
 }
 
 // ─── Off Duty ─────────────────────────────────────────────────────────────────
-function OffDuty() {
+function OffDuty({ language }: { language: "en" | "zh" }) {
   const [hovered, setHovered] = useState<number | null>(null);
   return (
     <section style={{ background: C.pink, padding: "105px 0" }}>
       <div style={wrap}>
-        <SectionHead index="02" title={"Things kept\non the desk."} desc="Not a detour from the work. Another way of practicing observation." />
+        <SectionHead index="02" title={language === "en" ? "Things kept\non the desk." : "放在\n桌子上的东西。"} desc={language === "en" ? "Not a detour from the work. Another way of practicing observation." : "不是离开工作的绕路。这是另一种观察练习的方式。"} />
         <Reveal>
           <div style={{
             display: "grid",
@@ -796,7 +796,7 @@ function OffDuty() {
 }
 
 // ─── Projects ─────────────────────────────────────────────────────────────────
-function Projects() {
+function Projects({ language }: { language: "en" | "zh" }) {
   const [hovered, setHovered] = useState<number | null>(null);
   return (
     <section id="projects" style={{ background: C.bone, padding: "105px 0" }}>
@@ -853,7 +853,8 @@ function Projects() {
 }
 
 // ─── Resume ───────────────────────────────────────────────────────────────────
-function Resume() {
+function Resume({ language }: { language: "en" | "zh" }) {
+  const t = TRANSLATIONS[language];
   return (
     <section id="resume" style={{ background: C.green, color: C.bone, padding: "105px 0" }}>
       <div style={wrap}>
@@ -920,7 +921,7 @@ function Resume() {
 }
 
 // ─── Notes ────────────────────────────────────────────────────────────────────
-function Notes() {
+function Notes({ language }: { language: "en" | "zh" }) {
   const [hovered, setHovered] = useState<number | null>(null);
   return (
     <section id="notes" style={{ background: C.bone, padding: "105px 0 0" }}>
@@ -1006,7 +1007,7 @@ function Contact() {
 }
 
 // ─── Photography ──────────────────────────────────────────────────────────────
-function Photography() {
+function Photography({ language }: { language: "en" | "zh" }) {
   const stripRef = useRef<HTMLDivElement>(null);
   const dragging = useRef(false);
   const startX = useRef(0);
