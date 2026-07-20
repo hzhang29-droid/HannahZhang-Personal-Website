@@ -63,7 +63,7 @@ const TRANSLATIONS = {
     },
     about: {
       title: "About",
-      desc: "Research-minded, image-minded. A practice built around attention to detail, repetition, and evidence. I spend most of my time between biology labs, code, and design. By day, I work with zebrafish, HCR, confocal microscopy, and computational research. Outside the lab, I enjoy film photography, astrophotography, and playing the erhu.",
+      desc: "I work between <strong>wet lab biology</strong>, computation, and visual culture. In the day: zebrafish, HCR, confocal microscopy and reverse engineering. Interests: film frames, skywatching, coffee, and erhu.",
     },
     research: "Research",
     photography: "Photography",
