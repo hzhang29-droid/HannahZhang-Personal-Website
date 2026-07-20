@@ -2,14 +2,14 @@
 
 A bilingual (English/中文) personal portfolio website showcasing research, photography, and creative work.
 
-## 🌐 Live Site
+## Live Site
 
 Published at: [https://hzhang29-droid.github.io/HannahZhang-Personal-Website/](https://hzhang29-droid.github.io/HannahZhang-Personal-Website/)
 
-## 📁 Project Structure
+## Project Structure
 
 ```
-Figma/Enhance Personal Website Interactivity/  # Main React application
+Figma/portfolio/                       # Main React application
 ├── src/
 │   ├── app/
 │   │   ├── App.tsx                 # Main component with all sections
@@ -29,11 +29,11 @@ Figma/Enhance Personal Website Interactivity/  # Main React application
 └── life photos/
 ```
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Install Dependencies
 ```bash
-cd "Figma/Enhance Personal Website Interactivity"
+cd "Figma/portfolio"
 npm install
 ```
 
@@ -49,35 +49,35 @@ npm run build
 
 The built files will be in the `dist/` directory.
 
-## 🎨 Features
+## Features
 
-- **Bilingual Support**: Toggle between English and 中文
-- **Interactive Gallery**: Draggable Polaroid-style photo grid
-- **Image Comparison Slider**: Before/after reveal effect with mouse interaction
-- **Smooth Animations**: Reveal effects and parallax scrolling
-- **Responsive Design**: Built with Tailwind CSS
-- **Research Showcase**: Zebrafish developmental biology projects
-- **Photography Portfolio**: Personal photography and astrophotography work
+- Bilingual Support: Toggle between English and 中文
+- Interactive Gallery: Draggable Polaroid-style photo grid
+- Image Comparison Slider: Before/after reveal effect with mouse interaction
+- Smooth Animations: Reveal effects and parallax scrolling
+- Responsive Design: Built with Tailwind CSS
+- Research Showcase: Zebrafish developmental biology projects
+- Photography Portfolio: Personal photography and astrophotography work
 
-## 🔧 Technologies
+## Technologies
 
-- **Frontend**: React 18, TypeScript
-- **Build**: Vite 6.3.5
-- **Styling**: Tailwind CSS, custom CSS-in-JS
-- **Animation**: motion/react
-- **Deployment**: GitHub Pages
+- Frontend: React 18, TypeScript
+- Build: Vite 6.3.5
+- Styling: Tailwind CSS, custom CSS-in-JS
+- Animation: motion/react
+- Deployment: GitHub Pages
 
-## 📝 Content Sections
+## Content Sections
 
-1. **Hero** - Archive information and language toggle
-2. **Intro** - Personal introduction with location context
-3. **About** - Work philosophy and daily activities
-4. **Research** - Academic and research projects
-5. **Photography** - Gallery of personal work
-6. **Resume** - Education and experience
-7. **Notes** - Internal thoughts and reflections
+1. Hero - Archive information and language toggle
+2. Intro - Personal introduction with location context
+3. About - Work philosophy and daily activities
+4. Research - Academic and research projects
+5. Photography - Gallery of personal work
+6. Resume - Education and experience
+7. Notes - Internal thoughts and reflections
 
-## 📂 Local Photo Organization
+## Local Photo Organization
 
 All personal photos are stored in the `/照片/` directory by category:
 - `astronomy/` - Astrophotography and startrails
@@ -86,13 +86,13 @@ All personal photos are stored in the `/照片/` directory by category:
 - `photograph/` - General photography portfolio
 - Life photos for intro section
 
-## 🌐 Deployment
+## Deployment
 
 The site is automatically deployed to GitHub Pages via GitHub Actions on push to `main` branch.
 
-**Repository**: [HannahZhang-Personal-Website](https://github.com/hzhang29-droid/HannahZhang-Personal-Website)
+Repository: [HannahZhang-Personal-Website](https://github.com/hzhang29-droid/HannahZhang-Personal-Website)
 
-## 📧 Contact
+## Contact
 
 For inquiries, visit the website or check the contact section.
 
