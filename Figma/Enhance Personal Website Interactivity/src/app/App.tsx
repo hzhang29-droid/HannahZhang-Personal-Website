@@ -1,6 +1,15 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "motion/react";
 
+import seoul540 from "../assets/personal-photos/seoul-540.jpg";
+import starTrails from "../assets/personal-photos/star-trails.jpg";
+import fieldTripSky from "../assets/personal-photos/field-trip-sky.jpg";
+import hangzhouWestLake from "../assets/personal-photos/hangzhou-west-lake.jpg";
+import labPoster from "../assets/personal-photos/lab-poster.jpg";
+import celebratingCollaboration from "../assets/personal-photos/celebrating-collaboration.jpg";
+import groupphoto1 from "../assets/personal-photos/groupphoto1.jpg";
+import astrophotography from "../assets/personal-photos/astrophotography.jpg";
+
 // ─── palette ─────────────────────────────────────────────────────────────────
 const C = {
   bone: "#f3ecdf",
@@ -87,14 +96,14 @@ const INTERNAL_NOTES = [
 ];
 
 const GALLERY = [
-  { src: "1538485399081-7191377e8241", caption: "SEOUL / 2026", tag: "35mm", r: -3, dy: 0 },
-  { src: "1427501482951-3da9b725be23", caption: "STAR TRAILS / MA", tag: "LONG EXP", r: 2, dy: -24 },
-  { src: "1531931477284-7e16215c9540", caption: "HONGDAE / NIGHT", tag: "FILM", r: -1.5, dy: 16 },
-  { src: "1612175221152-2ca8b0d357d4", caption: "WINTER / CAMPUS", tag: "JAN 2026", r: 3, dy: -8 },
-  { src: "1533577116850-9cc66cad8a9b", caption: "STREET / DUSK", tag: "CROWD", r: -2, dy: 20 },
-  { src: "1626972759319-f32a691f6d1e", caption: "MILKY WAY", tag: "FIELD NOTES", r: 1.5, dy: -16 },
-  { src: "1622745563958-297959f28efa", caption: "BARE TREES", tag: "FEB 2026", r: -3, dy: 12 },
-  { src: "1469980098053-382eb10ba017", caption: "STAR SPIN", tag: "LONG EXP", r: 2.5, dy: -20 },
+  { src: seoul540, caption: "SEOUL / 2026", tag: "35mm", r: -3, dy: 0 },
+  { src: starTrails, caption: "STAR TRAILS / MA", tag: "LONG EXP", r: 2, dy: -24 },
+  { src: fieldTripSky, caption: "FIELD NOTES / SKY", tag: "ASTRO", r: -1.5, dy: 16 },
+  { src: hangzhouWestLake, caption: "WEST LAKE / 2025", tag: "TRAVEL", r: 3, dy: -8 },
+  { src: labPoster, caption: "LAB POSTER", tag: "EXHIBITION", r: -2, dy: 20 },
+  { src: celebratingCollaboration, caption: "COLLABORATION", tag: "RESEARCH", r: 1.5, dy: -16 },
+  { src: groupphoto1, caption: "GROUP / ERHU", tag: "STILL LIFE", r: -3, dy: 12 },
+  { src: astrophotography, caption: "ASTRO / FIELD", tag: "NIGHT", r: 2.5, dy: -20 },
 ];
 
 // ─── wrap style ────────────────────────────────────────────────────────────────
@@ -1012,7 +1021,7 @@ function Polaroid({ photo, index }: { photo: typeof GALLERY[0]; index: number })
       }}
     >
       <img
-        src={`https://images.unsplash.com/photo-${photo.src}?w=400&h=300&fit=crop&auto=format`}
+        src={photo.src}
         alt={photo.caption}
         draggable={false}
         style={{
